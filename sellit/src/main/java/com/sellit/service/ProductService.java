@@ -1,12 +1,15 @@
-package com.sellit.dao;
+package com.sellit.service;
 
 import java.util.List;
-
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 
 import com.sellit.persistence.Product;
 
-public interface ProductDao extends JpaRepository<Product, Long> {
+public interface ProductService {
+
+	Product save(Product product);
+
+	Optional<Product> findById(Long productId);
 
 	List<Product> findByBarcode(String barcode);
 
