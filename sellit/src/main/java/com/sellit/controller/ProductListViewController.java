@@ -5,12 +5,10 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import com.sellit.persistence.Product;
+import com.sellit.persistence.ProductImpl;
 import com.sellit.service.ProductService;
 import com.sellit.util.AppUtil;
 
@@ -24,7 +22,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 @Component
@@ -101,7 +98,7 @@ public class ProductListViewController {
 
 	@FXML
 	private void addNewProduct() throws IOException {
-		Product product = new Product();
+		Product product = new ProductImpl();
 
 		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/ProductManageView.fxml");
 		Pane pane = fxmlLoader.load();
