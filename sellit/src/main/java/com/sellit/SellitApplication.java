@@ -1,27 +1,31 @@
 package com.sellit;
 
+import java.io.IOException;
+import java.util.Stack;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.sellit.dao.ProductDao;
-import com.sellit.persistence.Product;
+import com.sellit.util.AppUtil;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 @SpringBootApplication
 public class SellitApplication extends Application {
 
-	private ConfigurableApplicationContext springContext;
+	private static ConfigurableApplicationContext springContext;
 	private Parent root;
+	private Stage primaryStage;
+	private static BorderPane rootLayout;
+	private static Stack<Pane> centerPanes;
 
 	@Override
 	public void init() throws Exception {
@@ -29,27 +33,83 @@ public class SellitApplication extends Application {
 	}
 
 	public static void main(String[] args) {
-		launch(args);
+		try {
+			launch(args);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Stage window = primaryStage;
-		window.setTitle("Title!");
 
-		CheckBox box1 = new CheckBox("Bacon");
-		CheckBox box2 = new CheckBox("Tuna");
-		box2.setSelected(true);
+		this.primaryStage = primaryStage;
+		this.primaryStage.setTitle("Sellit");
 
-		Button button = new Button("Order now!");
+		initializeRootLayout();
 
-		VBox layout = new VBox(10);
-		layout.setPadding(new Insets(20, 20, 20, 20));
-		layout.getChildren().addAll(box1, box2, button);
+		showHeader();
+		showMenu();
+		showProductListView();
+		showFooter();
 
-		Scene scene = new Scene(layout, 300, 300);
-		window.setScene(scene);
+	}
 
-		window.show();
+	public static ConfigurableApplicationContext getSpringContext() {
+		return springContext;
+	}
+
+	public static BorderPane getRootLayout() {
+		return rootLayout;
+	}
+
+	public static Stack<Pane> getCenterPanes() {
+		return centerPanes;
+	}
+
+	/**
+	 * Initializes the root layout.
+	 * 
+	 * @throws IOException
+	 */
+	public void initializeRootLayout() throws IOException {
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("RootLayout.fxml");
+		rootLayout = (BorderPane) fxmlLoader.load();
+
+		centerPanes = new Stack<>();
+
+		// Show the scene containing the root layout.
+		Scene scene = new Scene(rootLayout);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+
+	public void showHeader() throws IOException {
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/Header.fxml");
+		Pane pane = fxmlLoader.load();
+
+		rootLayout.setTop(pane);
+	}
+
+	public void showMenu() throws IOException {
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/Menu.fxml");
+		Pane pane = fxmlLoader.load();
+
+		rootLayout.setLeft(pane);
+	}
+
+	public void showProductListView() throws IOException {
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/ProductListView.fxml");
+		AnchorPane productDashboard = (AnchorPane) fxmlLoader.load();
+
+		AppUtil.pushCenterPaneStack(productDashboard);
+	}
+
+	public void showFooter() throws IOException {
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/Footer.fxml");
+		Pane pane = fxmlLoader.load();
+
+		rootLayout.setBottom(pane);
 	}
 }
