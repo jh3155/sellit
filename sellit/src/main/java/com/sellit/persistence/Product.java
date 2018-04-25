@@ -2,42 +2,130 @@ package com.sellit.persistence;
 
 import java.math.BigDecimal;
 
-public interface Product {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-	Long getProductId();
+@Entity
+@Table(name = "PRODUCT")
+public class Product {
 
-	void setProductId(Long productId);
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "PRODUCT_ID")
+	private Long productId;
 
-	String getBarcode();
+	@OneToOne(targetEntity = Department.class)
+	@JoinColumn(name = "DEPARTMENT_ID")
+	private Department department;
 
-	void setBarcode(String barcode);
+	@Column(name = "BARCODE")
+	private String barcode;
 
-	String getFullName();
+	@Column(name = "FULL_NAME")
+	private String fullName;
 
-	void setFullName(String fullName);
+	@Column(name = "SHORT_NAME_ENG")
+	private String shortNameInEnglish;
 
-	String getShortNameInEnglish();
+	@Column(name = "SHORT_NAME_OTHER")
+	private String shortNameInOtherLanguage;
 
-	void setShortNameInEnglish(String shortNameInEnglish);
+	@Column(name = "INVENTORY_ON_HAND")
+	private Integer inventoryOnHand;
 
-	String getShortNameInOtherLanguage();
+	@Column(name = "SAFETY_INVENTORY_ON_HAND")
+	private Integer safetyInventoryOnHand;
 
-	void setShortNameInOtherLanguage(String shortNameInOtherLanguage);
+	@Column(name = "COST_AMT")
+	private BigDecimal costAmount;
 
-	Integer getInventoryOnHand();
+	@Column(name = "SALES_AMT")
+	private BigDecimal salesAmount;
 
-	void setInventoryOnHand(Integer inventoryOnHand);
+	public Long getProductId() {
+		return productId;
+	}
 
-	Integer getSafetyInventoryOnHand();
+	public void setProductId(Long productId) {
+		this.productId = productId;
+	}
 
-	void setSafetyInventoryOnHand(Integer safetyInventoryOnHand);
+	public Department getDepartment() {
+		return department;
+	}
 
-	BigDecimal getCostAmount();
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
 
-	void setCostAmount(BigDecimal costAmount);
+	public String getBarcode() {
+		return barcode;
+	}
 
-	BigDecimal getSalesAmount();
+	public void setBarcode(String barcode) {
+		this.barcode = barcode;
+	}
 
-	void setSalesAmount(BigDecimal salesAmount);
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getShortNameInEnglish() {
+		return shortNameInEnglish;
+	}
+
+	public void setShortNameInEnglish(String shortNameInEnglish) {
+		this.shortNameInEnglish = shortNameInEnglish;
+	}
+
+	public String getShortNameInOtherLanguage() {
+		return shortNameInOtherLanguage;
+	}
+
+	public void setShortNameInOtherLanguage(String shortNameInOtherLanguage) {
+		this.shortNameInOtherLanguage = shortNameInOtherLanguage;
+	}
+
+	public Integer getInventoryOnHand() {
+		return inventoryOnHand;
+	}
+
+	public void setInventoryOnHand(Integer inventoryOnHand) {
+		this.inventoryOnHand = inventoryOnHand;
+	}
+
+	public Integer getSafetyInventoryOnHand() {
+		return safetyInventoryOnHand;
+	}
+
+	public void setSafetyInventoryOnHand(Integer safetyInventoryOnHand) {
+		this.safetyInventoryOnHand = safetyInventoryOnHand;
+	}
+
+	public BigDecimal getCostAmount() {
+		return costAmount;
+	}
+
+	public void setCostAmount(BigDecimal costAmount) {
+		this.costAmount = costAmount;
+	}
+
+	public BigDecimal getSalesAmount() {
+		return salesAmount;
+	}
+
+	public void setSalesAmount(BigDecimal salesAmount) {
+		this.salesAmount = salesAmount;
+	}
 
 }

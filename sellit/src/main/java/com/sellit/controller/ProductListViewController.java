@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sellit.persistence.Product;
-import com.sellit.persistence.ProductImpl;
+import com.sellit.persistence.Product;
 import com.sellit.service.ProductService;
 import com.sellit.util.AppUtil;
 
@@ -98,7 +98,7 @@ public class ProductListViewController {
 
 	@FXML
 	private void addNewProduct() throws IOException {
-		Product product = new ProductImpl();
+		Product product = new Product();
 
 		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/ProductManageView.fxml");
 		Pane pane = fxmlLoader.load();
