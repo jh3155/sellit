@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -92,7 +93,14 @@ public class ProductListViewController {
 
 	@FXML
 	private void searchBarcode() {
-		List<Product> products = productService.findByBarcode(barcodeField.getText());
+
+		String searchText = null;
+
+		if (!StringUtils.isBlank(barcodeField.getText())) {
+			searchText = barcodeField.getText();
+		}
+
+		List<Product> products = productService.findByBarcode(searchText);
 		productTable.setItems(FXCollections.observableArrayList(products));
 	}
 
