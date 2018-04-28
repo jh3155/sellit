@@ -1,16 +1,17 @@
 package com.sellit.controller;
 
+import java.io.IOException;
+
 import org.springframework.stereotype.Component;
 
+import com.sellit.util.AppUtil;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
 
 @Component
 public class MenuController {
-
-	@FXML
-	private TreeView<String> menuTree;
 
 	/**
 	 * The constructor. The constructor is called before the initialize() method.
@@ -21,19 +22,50 @@ public class MenuController {
 	/**
 	 * Initializes the controller class. This method is automatically called after
 	 * the fxml file has been loaded.
+	 * 
+	 * @throws IOException
 	 */
 	@FXML
-	private void initialize() {
+	private void initialize() throws IOException {
+		AppUtil.showDashboard();
+	}
 
-		TreeItem<String> rootNode = new TreeItem<String>("Sellit");
+	@FXML
+	private void showSale() throws IOException {
+		// TODO:
+	}
 
-		TreeItem<String> dashboard = new TreeItem<String>("Dashboard");
-		TreeItem<String> product = new TreeItem<String>("Product");
+	@FXML
+	private void showProduct() throws IOException {
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/ProductMainView.fxml");
+		Pane productDashboard = fxmlLoader.load();
 
-		rootNode.getChildren().add(dashboard);
-		rootNode.getChildren().add(product);
+		AppUtil.pushCenterPaneStack(productDashboard, true);
+	}
 
-		menuTree.setRoot(rootNode);
+	@FXML
+	private void showInventory() throws IOException {
+		// TODO:
+	}
+
+	@FXML
+	private void showEmployee() throws IOException {
+		// TODO:
+	}
+
+	@FXML
+	private void showReport() throws IOException {
+		// TODO:
+	}
+
+	@FXML
+	private void showOptions() throws IOException {
+		// TODO:
+	}
+
+	@FXML
+	private void showNotice() throws IOException {
+		// TODO:
 	}
 
 }
