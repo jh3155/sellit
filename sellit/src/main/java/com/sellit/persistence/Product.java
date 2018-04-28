@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,7 +20,7 @@ public class Product {
 	@Column(name = "PRODUCT_ID")
 	private Long productId;
 
-	@OneToOne(targetEntity = Department.class)
+	@ManyToOne(targetEntity = Department.class)
 	@JoinColumn(name = "DEPARTMENT_ID")
 	private Department department;
 
