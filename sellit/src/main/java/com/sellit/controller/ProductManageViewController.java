@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.sellit.persistence.Product;
 import com.sellit.service.ProductService;
 import com.sellit.util.AppUtil;
+import com.sellit.util.ValidateUtil;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -80,6 +81,10 @@ public class ProductManageViewController {
 	@FXML
 	private void save() throws IOException {
 
+		if (validate() == false) {
+			return;
+		}
+
 		product.setBarcode(barcodeField.getText());
 		product.setFullName(fullNameField.getText());
 		product.setShortNameInEnglish(shortNameInEnglishField.getText());
@@ -92,12 +97,45 @@ public class ProductManageViewController {
 		productService.save(product);
 
 		AppUtil.showPopupWindow("Product [" + product.getFullName() + "] has been saved", "");
+		
+		AppUtil.popCenterPaneStack();
 	}
 
 	// TODO: replace the close button with the global back button
 	@FXML
 	private void close() {
 		AppUtil.popCenterPaneStack();
+	}
+
+	private boolean validate() {
+
+		if (ValidateUtil.invalidLength(barcodeField, 50)) {
+			AppUtil.showPopupWindow("Barcode has too many characters", "");
+			return false;
+		} else if (ValidateUtil.blankTextOrInvalidLength(fullNameField, 50)) {
+			AppUtil.showPopupWindow("Full name is empty or has too many characters", "");
+			return false;
+		} else if (ValidateUtil.blankTextOrInvalidLength(shortNameInEnglishField, 50)) {
+			AppUtil.showPopupWindow("Short name in English is empty or has too many characters", "");
+			return false;
+		} else if (ValidateUtil.blankTextOrInvalidLength(shortNameInOtherLanguageField, 50)) {
+			AppUtil.showPopupWindow("Short name in other language is empty or has too many characters", "");
+			return false;
+		} else if (ValidateUtil.invalidInteger(inventoryOnHandField)) {
+			AppUtil.showPopupWindow("Inventory on hand is not a valid number", "");
+			return false;
+		} else if (ValidateUtil.invalidInteger(safetyInventoryOnHandField)) {
+			AppUtil.showPopupWindow("Safety inventory on hand is not a valid number", "");
+			return false;
+		} else if (ValidateUtil.invalidBigDecimal(costAmountField)) {
+			AppUtil.showPopupWindow("Cost amount is not a valid decimal number", "");
+			return false;
+		} else if (ValidateUtil.invalidBigDecimal(salesAmountField)) {
+			AppUtil.showPopupWindow("Sales amount is not a valid decimal number", "");
+			return false;
+		}
+
+		return true;
 	}
 
 }

@@ -28,7 +28,7 @@ public class AppUtil {
 		if (clearStackBeforePush) {
 			SellitApplication.getCenterPanes().clear();
 		}
-		SellitApplication.getRootLayout().setCenter(SellitApplication.getCenterPanes().push(pane));
+		pushCenterPaneStack(pane);
 	}
 
 	public static void popCenterPaneStack() {
@@ -42,22 +42,35 @@ public class AppUtil {
 		SellitApplication.getRootLayout().setCenter(previousPane);
 	}
 
-	public static void showPopupWindow(String title, String message) throws IOException {
+	public static void showPopupWindow(String title, String message) {
 
-		FXMLLoader fxmlLoader = createFxmlLoader("/com/sellit/controller/PopupWindow.fxml");
+		try {
+			FXMLLoader fxmlLoader = createFxmlLoader("/com/sellit/controller/PopupWindow.fxml");
+			Pane pane = fxmlLoader.load();
+			PopupWindowController controller = fxmlLoader.getController();
+			controller.setText(title, message);
+
+			// TODO: need to show in center
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			Scene scene = new Scene(pane);
+			dialogStage.setScene(scene);
+
+			controller.setDialogStage(dialogStage);
+			dialogStage.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void showDashboard() throws IOException {
+
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/Dashboard.fxml");
 		Pane pane = fxmlLoader.load();
-		PopupWindowController controller = fxmlLoader.getController();
-		controller.setText(title, message);
 
-		// TODO: need to show in center
-		Stage dialogStage = new Stage();
-		dialogStage.setTitle("Edit Person");
-		dialogStage.initModality(Modality.WINDOW_MODAL);
-		Scene scene = new Scene(pane);
-		dialogStage.setScene(scene);
-
-		controller.setDialogStage(dialogStage);
-		dialogStage.showAndWait();
+		pushCenterPaneStack(pane, true);
 
 	}
 
