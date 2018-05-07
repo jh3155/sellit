@@ -51,7 +51,6 @@ public class SellitApplication extends Application {
 
 		showHeader();
 		showMenu();
-		showProductListView();
 		showFooter();
 
 	}
@@ -97,13 +96,6 @@ public class SellitApplication extends Application {
 		Pane pane = fxmlLoader.load();
 
 		rootLayout.setLeft(pane);
-	}
-
-	public void showProductListView() throws IOException {
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/ProductListView.fxml");
-		AnchorPane productDashboard = (AnchorPane) fxmlLoader.load();
-
-		AppUtil.pushCenterPaneStack(productDashboard);
 	}
 
 	public void showFooter() throws IOException {

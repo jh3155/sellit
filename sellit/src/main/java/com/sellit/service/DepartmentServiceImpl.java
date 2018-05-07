@@ -34,4 +34,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 		return departmentDao.findByDepartmentNameContaining(departmentName);
 	}
 
+	@Override
+	public List<Department> findByStatusOrderByDepartmentNameAsc(String status) {
+		return departmentDao.findByStatusOrderByDepartmentNameAsc(status);
+	}
+
 }

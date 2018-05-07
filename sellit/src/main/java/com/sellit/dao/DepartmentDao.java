@@ -10,4 +10,6 @@ public interface DepartmentDao extends JpaRepository<Department, Long> {
 
 	List<Department> findByDepartmentNameContaining(String departmentName);
 
+	List<Department> findByStatusOrderByDepartmentNameAsc(String status);
+
 }

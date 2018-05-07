@@ -2,24 +2,37 @@ package com.sellit.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sellit.constants.StatusConstants;
+import com.sellit.persistence.Department;
 import com.sellit.persistence.Product;
+import com.sellit.service.DepartmentService;
 import com.sellit.service.ProductService;
 import com.sellit.util.AppUtil;
 import com.sellit.util.ValidateUtil;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.util.StringConverter;
 
 @Component
 public class ProductManageViewController {
 
 	@Autowired
 	private ProductService productService;
+
+	@Autowired
+	private DepartmentService departmentService;
+
+	@FXML
+	private ChoiceBox<Department> departmentChoiceBox;
 
 	@FXML
 	private TextField barcodeField;
@@ -47,6 +60,8 @@ public class ProductManageViewController {
 
 	private Product product;
 
+	private List<Department> departments;
+
 	/**
 	 * The constructor. The constructor is called before the initialize() method.
 	 */
@@ -59,6 +74,22 @@ public class ProductManageViewController {
 	 */
 	@FXML
 	private void initialize() {
+		departments = departmentService.findByStatusOrderByDepartmentNameAsc(StatusConstants.ACTIVE);
+		departmentChoiceBox.getItems().addAll(departments);
+
+		departmentChoiceBox.setConverter(new StringConverter<Department>() {
+
+			@Override
+			public String toString(Department object) {
+				return object.getDepartmentName();
+			}
+
+			@Override
+			public Department fromString(String string) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+		});
 	}
 
 	public void clearFields() {
@@ -97,7 +128,7 @@ public class ProductManageViewController {
 		productService.save(product);
 
 		AppUtil.showPopupWindow("Product [" + product.getFullName() + "] has been saved", "");
-		
+
 		AppUtil.popCenterPaneStack();
 	}
 

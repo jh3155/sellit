@@ -14,4 +14,6 @@ public interface DepartmentService {
 
 	List<Department> findByDepartmentNameContaining(String departmentName);
 
+	List<Department> findByStatusOrderByDepartmentNameAsc(String status);
+
 }

@@ -7,6 +7,7 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sellit.constants.StatusConstants;
 import com.sellit.persistence.Department;
 import com.sellit.persistence.Product;
 import com.sellit.service.DepartmentService;
@@ -60,6 +61,7 @@ public class DepartmentManageViewController {
 		}
 
 		department.setDepartmentName(departmentNameField.getText());
+		department.setStatus(StatusConstants.ACTIVE);
 
 		departmentService.save(department);
 

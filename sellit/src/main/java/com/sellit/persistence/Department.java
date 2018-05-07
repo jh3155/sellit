@@ -19,6 +19,9 @@ public class Department {
 	@Column(name = "DEPARTMENT_NAME")
 	private String departmentName;
 
+	@Column(name = "STATUS")
+	private String status;
+
 	public Long getDepartmentId() {
 		return departmentId;
 	}
@@ -34,6 +37,14 @@ public class Department {
 
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }
