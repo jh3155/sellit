@@ -41,6 +41,9 @@ public class ProductListViewController {
 	private TableColumn<Product, String> barcodeColumn;
 
 	@FXML
+	private TableColumn<Product, String> departmentColumn;
+
+	@FXML
 	private TableColumn<Product, String> productNameColumn;
 
 	@FXML
@@ -73,6 +76,8 @@ public class ProductListViewController {
 
 		productIdColumn
 				.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getProductId()).asObject());
+		departmentColumn.setCellValueFactory(
+				cellData -> new SimpleStringProperty(cellData.getValue().getDepartment().getDepartmentName()));
 		barcodeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getBarcode()));
 		productNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFullName()));
 		onHandColumn.setCellValueFactory(

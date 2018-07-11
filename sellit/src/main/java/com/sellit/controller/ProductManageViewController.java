@@ -93,6 +93,11 @@ public class ProductManageViewController {
 	}
 
 	public void clearFields() {
+
+		if (product.getDepartment() != null) {
+			departmentChoiceBox.getSelectionModel().select(product.getDepartment());
+		}
+
 		barcodeField.setText(product.getBarcode());
 		fullNameField.setText(product.getFullName());
 		shortNameInEnglishField.setText(product.getShortNameInEnglish());
@@ -115,6 +120,8 @@ public class ProductManageViewController {
 		if (validate() == false) {
 			return;
 		}
+
+		product.setDepartment(departmentChoiceBox.getSelectionModel().getSelectedItem());
 
 		product.setBarcode(barcodeField.getText());
 		product.setFullName(fullNameField.getText());
@@ -163,6 +170,9 @@ public class ProductManageViewController {
 			return false;
 		} else if (ValidateUtil.invalidBigDecimal(salesAmountField)) {
 			AppUtil.showPopupWindow("Sales amount is not a valid decimal number", "");
+			return false;
+		} else if (departmentChoiceBox.getSelectionModel().getSelectedItem() == null) {
+			AppUtil.showPopupWindow("Invalid department", "");
 			return false;
 		}
 

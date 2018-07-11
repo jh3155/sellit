@@ -28,6 +28,7 @@
                   <TableView fx:id="productTable" layoutX="180.0" layoutY="120.0" prefHeight="505.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="productIdColumn" editable="false" prefWidth="75.0" text="Product ID" />
+                        <TableColumn fx:id="departmentColumn" prefWidth="150.0" text="Department" />
                       <TableColumn fx:id="barcodeColumn" editable="false" prefWidth="150.0" text="Barcode" />
                         <TableColumn fx:id="productNameColumn" editable="false" prefWidth="250.0" text="Product Name" />
                         <TableColumn fx:id="onHandColumn" editable="false" prefWidth="100.0" text="On Hand" />
