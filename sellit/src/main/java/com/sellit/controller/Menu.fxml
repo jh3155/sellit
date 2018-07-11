@@ -9,8 +9,8 @@
       <VBox layoutX="14.0" layoutY="92.0" prefHeight="600.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="166.0" text="Sale" />
-            <Button mnemonicParsing="false" onAction="#showProduct" prefHeight="50.0" prefWidth="166.0" text="Product" />
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="166.0" text="Inventory" />
+            <Button mnemonicParsing="false" onAction="#showInventory" prefHeight="50.0" prefWidth="166.0" text="Inventory" />
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="166.0" text="Customer" />
             <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="166.0" text="Employee" />
             <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="166.0" text="Report" />
             <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="166.0" text="Options" />

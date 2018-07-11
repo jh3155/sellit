@@ -36,16 +36,11 @@ public class MenuController {
 	}
 
 	@FXML
-	private void showProduct() throws IOException {
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/ProductMainView.fxml");
+	private void showInventory() throws IOException {
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/InventoryMainView.fxml");
 		Pane productDashboard = fxmlLoader.load();
 
 		AppUtil.pushCenterPaneStack(productDashboard, true);
-	}
-
-	@FXML
-	private void showInventory() throws IOException {
-		// TODO:
 	}
 
 	@FXML
