@@ -37,7 +37,7 @@ public class MenuController {
 
 	@FXML
 	private void showInventory() throws IOException {
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/InventoryMainView.fxml");
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/InventoryMainView.fxml");
 		Pane productDashboard = fxmlLoader.load();
 
 		AppUtil.pushCenterPaneStack(productDashboard, true);

@@ -1,4 +1,4 @@
-package com.sellit.controller;
+package com.sellit.controller.inventory;
 
 import java.io.IOException;
 
@@ -11,12 +11,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
 @Component
-public class ProductMainViewController {
+public class InventoryMainViewController {
 
 	/**
 	 * The constructor. The constructor is called before the initialize() method.
 	 */
-	public ProductMainViewController() {
+	public InventoryMainViewController() {
 	}
 
 	/**
@@ -32,7 +32,7 @@ public class ProductMainViewController {
 
 	@FXML
 	private void showDepartmentList() throws IOException {
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/DepartmentListView.fxml");
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/DepartmentListView.fxml");
 		Pane pane = fxmlLoader.load();
 
 		AppUtil.pushCenterPaneStack(pane);
@@ -40,7 +40,7 @@ public class ProductMainViewController {
 
 	@FXML
 	private void showProductList() throws IOException {
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/ProductListView.fxml");
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/ProductListView.fxml");
 		Pane pane = fxmlLoader.load();
 
 		AppUtil.pushCenterPaneStack(pane);

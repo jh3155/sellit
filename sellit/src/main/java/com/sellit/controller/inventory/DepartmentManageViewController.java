@@ -1,4 +1,4 @@
-package com.sellit.controller;
+package com.sellit.controller.inventory;
 
 import java.io.IOException;
 import java.math.BigDecimal;

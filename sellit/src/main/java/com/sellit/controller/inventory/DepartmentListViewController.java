@@ -1,4 +1,4 @@
-package com.sellit.controller;
+package com.sellit.controller.inventory;
 
 import java.io.IOException;
 import java.util.List;
@@ -80,7 +80,7 @@ public class DepartmentListViewController {
 	private void addNewDepartment() throws IOException {
 		Department department = new Department();
 
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/DepartmentManageView.fxml");
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/DepartmentManageView.fxml");
 		Pane pane = fxmlLoader.load();
 		DepartmentManageViewController controller = fxmlLoader.getController();
 		controller.setDepartment(department);
@@ -97,7 +97,7 @@ public class DepartmentListViewController {
 			return;
 		}
 
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/DepartmentManageView.fxml");
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/DepartmentManageView.fxml");
 		Pane pane = fxmlLoader.load();
 		DepartmentManageViewController controller = fxmlLoader.getController();
 		controller.setDepartment(department);

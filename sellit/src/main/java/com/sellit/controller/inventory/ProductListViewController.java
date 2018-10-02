@@ -1,4 +1,4 @@
-package com.sellit.controller;
+package com.sellit.controller.inventory;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -126,7 +126,7 @@ public class ProductListViewController {
 	private void addNewProduct() throws IOException {
 		Product product = new Product();
 
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/ProductManageView.fxml");
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/ProductManageView.fxml");
 		Pane pane = fxmlLoader.load();
 		ProductManageViewController controller = fxmlLoader.getController();
 		controller.setProduct(product);
@@ -143,7 +143,7 @@ public class ProductListViewController {
 			return;
 		}
 
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/ProductManageView.fxml");
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/ProductManageView.fxml");
 		Pane pane = fxmlLoader.load();
 		ProductManageViewController controller = fxmlLoader.getController();
 		controller.setProduct(product);
