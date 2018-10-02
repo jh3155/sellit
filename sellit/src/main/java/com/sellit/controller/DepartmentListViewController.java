@@ -3,6 +3,7 @@ package com.sellit.controller;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -62,8 +63,17 @@ public class DepartmentListViewController {
 
 	@FXML
 	private void searchDepartmentNameContaining() {
+
+		if (StringUtils.isBlank(departmentNameField.getText())) {
+			AppUtil.showPopupWindow("Enter department name to search", "");
+			departmentNameField.requestFocus();
+			return;
+		}
+
 		List<Department> departments = departmentService.findByDepartmentNameContaining(departmentNameField.getText());
 		departmentTable.setItems(FXCollections.observableArrayList(departments));
+
+		departmentNameField.requestFocus();
 	}
 
 	@FXML

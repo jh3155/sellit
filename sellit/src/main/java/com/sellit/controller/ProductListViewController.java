@@ -92,21 +92,34 @@ public class ProductListViewController {
 
 	@FXML
 	private void searchProductNameContaining() {
+
+		if (StringUtils.isBlank(productNameField.getText())) {
+			AppUtil.showPopupWindow("Enter product name to search", "");
+			productNameField.requestFocus();
+			return;
+		}
+
 		List<Product> products = productService.findByFullNameContaining(productNameField.getText());
 		productTable.setItems(FXCollections.observableArrayList(products));
+
+		productNameField.requestFocus();
 	}
 
 	@FXML
 	private void searchBarcode() {
 
-		String searchText = null;
-
-		if (!StringUtils.isBlank(barcodeField.getText())) {
-			searchText = barcodeField.getText();
+		if (StringUtils.isBlank(barcodeField.getText())) {
+			AppUtil.showPopupWindow("Enter barcode to search", "");
+			barcodeField.requestFocus();
+			return;
 		}
+
+		String searchText = barcodeField.getText();
 
 		List<Product> products = productService.findByBarcode(searchText);
 		productTable.setItems(FXCollections.observableArrayList(products));
+
+		barcodeField.requestFocus();
 	}
 
 	@FXML
