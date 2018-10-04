@@ -30,8 +30,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Override
-	public List<Department> findByDepartmentNameContaining(String departmentName) {
-		return departmentDao.findByDepartmentNameContaining(departmentName);
+	public List<Department> findByDepartmentNameContaining(String departmentName, String status) {
+		return departmentDao.findByDepartmentNameContaining(departmentName, status);
 	}
 
 	@Override

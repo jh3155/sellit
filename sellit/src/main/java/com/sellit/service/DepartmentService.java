@@ -12,7 +12,7 @@ public interface DepartmentService {
 
 	Optional<Department> findById(Long productId);
 
-	List<Department> findByDepartmentNameContaining(String departmentName);
+	List<Department> findByDepartmentNameContaining(String departmentName, String status);
 
 	List<Department> findByStatusOrderByDepartmentNameAsc(String status);
 

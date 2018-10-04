@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sellit.constants.StatusConstants;
 import com.sellit.persistence.Department;
 import com.sellit.persistence.Product;
 import com.sellit.service.DepartmentService;
@@ -70,7 +71,8 @@ public class DepartmentListViewController {
 			return;
 		}
 
-		List<Department> departments = departmentService.findByDepartmentNameContaining(departmentNameField.getText());
+		List<Department> departments = departmentService.findByDepartmentNameContaining(departmentNameField.getText(),
+				StatusConstants.ACTIVE);
 		departmentTable.setItems(FXCollections.observableArrayList(departments));
 
 		departmentNameField.requestFocus();
