@@ -49,9 +49,9 @@ public class SellitApplication extends Application {
 
 		initializeRootLayout();
 
-		showHeader();
+		// showHeader();
 		showMenu();
-		showFooter();
+		// showFooter();
 
 	}
 
@@ -80,6 +80,7 @@ public class SellitApplication extends Application {
 
 		// Show the scene containing the root layout.
 		Scene scene = new Scene(rootLayout);
+		scene.getStylesheets().add("/css/bootstrap3.css");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

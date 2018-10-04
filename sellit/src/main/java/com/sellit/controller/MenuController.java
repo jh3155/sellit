@@ -31,6 +31,11 @@ public class MenuController {
 	}
 
 	@FXML
+	private void showPrevious() throws IOException {
+		AppUtil.popCenterPaneStack();
+	}
+
+	@FXML
 	private void showSale() throws IOException {
 		// TODO:
 	}

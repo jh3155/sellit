@@ -15,6 +15,7 @@ import com.sellit.service.ProductService;
 import com.sellit.util.AppUtil;
 import com.sellit.util.ValidateUtil;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
@@ -33,6 +34,7 @@ public class DepartmentManageViewController {
 	 * The constructor. The constructor is called before the initialize() method.
 	 */
 	public DepartmentManageViewController() {
+
 	}
 
 	/**
@@ -41,6 +43,7 @@ public class DepartmentManageViewController {
 	 */
 	@FXML
 	private void initialize() {
+		Platform.runLater(() -> departmentNameField.requestFocus());
 	}
 
 	public void clearFields() {
