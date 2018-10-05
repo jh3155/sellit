@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -46,14 +47,15 @@ public class DepartmentManageViewController {
 		Platform.runLater(() -> departmentNameField.requestFocus());
 	}
 
-	public void clearFields() {
+	public void updateFields() {
 		departmentNameField.setText(department.getDepartmentName());
 	}
 
 	public void setDepartment(Department department) {
+
 		this.department = department;
 
-		clearFields();
+		updateFields();
 	}
 
 	@FXML

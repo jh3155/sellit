@@ -10,7 +10,7 @@ public interface DepartmentService {
 
 	Department save(Department department);
 
-	Optional<Department> findById(Long productId);
+	Department findById(Long productId);
 
 	List<Department> findByDepartmentNameContaining(String departmentName, String status);
 

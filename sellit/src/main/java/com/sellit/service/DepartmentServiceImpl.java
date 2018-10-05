@@ -25,8 +25,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Override
-	public Optional<Department> findById(Long productId) {
-		return departmentDao.findById(productId);
+	public Department findById(Long productId) {
+		Optional<Department> department = departmentDao.findById(productId);
+
+		if (department.isPresent()) {
+			return department.get();
+		}
+
+		return null;
 	}
 
 	@Override

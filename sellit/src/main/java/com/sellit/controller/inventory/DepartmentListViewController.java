@@ -70,6 +70,7 @@ public class DepartmentListViewController {
 		List<Department> departments = departmentService.findByDepartmentNameContaining(departmentNameField.getText(),
 				StatusConstants.ACTIVE);
 		departmentTable.setItems(FXCollections.observableArrayList(departments));
+		departmentTable.refresh();
 
 		departmentNameField.requestFocus();
 	}
@@ -88,9 +89,9 @@ public class DepartmentListViewController {
 
 	@FXML
 	private void modifyDepartment() throws IOException {
-		Department department = departmentTable.getSelectionModel().getSelectedItem();
+		Department selectedDepartment = departmentTable.getSelectionModel().getSelectedItem();
 
-		if (department == null) {
+		if (selectedDepartment == null) {
 			AppUtil.showPopupWindow("Select a product to modify", "");
 			return;
 		}
@@ -98,6 +99,9 @@ public class DepartmentListViewController {
 		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/DepartmentManageView.fxml");
 		Pane pane = fxmlLoader.load();
 		DepartmentManageViewController controller = fxmlLoader.getController();
+
+		// fetch the record again to make sure it gets the latest version
+		Department department = departmentService.findById(selectedDepartment.getDepartmentId());
 		controller.setDepartment(department);
 
 		AppUtil.pushCenterPaneStack(pane);
