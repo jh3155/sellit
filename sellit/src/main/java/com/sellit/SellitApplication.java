@@ -11,19 +11,22 @@ import com.sellit.util.AppUtil;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 @SpringBootApplication
 public class SellitApplication extends Application {
 
 	private static ConfigurableApplicationContext springContext;
 	private Parent root;
-	private Stage primaryStage;
+	private static Stage primaryStage;
 	private static BorderPane rootLayout;
 	private static Stack<Pane> centerPanes;
 
@@ -67,6 +70,10 @@ public class SellitApplication extends Application {
 		return centerPanes;
 	}
 
+	public static Stage getPrimaryStage() {
+		return primaryStage;
+	}
+
 	/**
 	 * Initializes the root layout.
 	 * 
@@ -81,7 +88,15 @@ public class SellitApplication extends Application {
 		// Show the scene containing the root layout.
 		Scene scene = new Scene(rootLayout);
 		scene.getStylesheets().add("/css/bootstrap3.css");
+
+		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+		primaryStage.setX((screenBounds.getWidth() - 1920) / 2);
+		primaryStage.setY((screenBounds.getHeight() - 1080) / 2);
+
+		 primaryStage.initStyle(StageStyle.UNDECORATED);
+
 		primaryStage.setScene(scene);
+
 		primaryStage.show();
 	}
 

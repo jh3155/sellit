@@ -6,12 +6,19 @@ import org.springframework.stereotype.Component;
 
 import com.sellit.util.AppUtil;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 @Component
 public class MenuController {
+
+	@FXML
+	private Button btnLogo;
 
 	/**
 	 * The constructor. The constructor is called before the initialize() method.
@@ -27,6 +34,21 @@ public class MenuController {
 	 */
 	@FXML
 	private void initialize() throws IOException {
+
+		// btnLogo.setStyle("-fx-background-image: url('../logo.png')");
+
+		Image image = new Image(getClass().getResourceAsStream("/logo.png"));
+		btnLogo.setGraphic(new ImageView(image));
+
+		// BackgroundImage backgroundImage = new BackgroundImage(
+		// new Image(getClass().getResource("/logo.png").toExternalForm()),
+		// BackgroundRepeat.NO_REPEAT,
+		// BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+		// BackgroundSize.DEFAULT);
+		// Background background = new Background(backgroundImage);
+		//
+		// btnLogo.setBackground(background);
+
 		AppUtil.showDashboard();
 	}
 
@@ -68,4 +90,8 @@ public class MenuController {
 		// TODO:
 	}
 
+	@FXML
+	private void exitProgram() {
+		Platform.exit();
+	}
 }

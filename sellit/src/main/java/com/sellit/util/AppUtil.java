@@ -6,10 +6,13 @@ import com.sellit.SellitApplication;
 import com.sellit.controller.PopupWindowController;
 
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class AppUtil {
 
@@ -52,10 +55,18 @@ public class AppUtil {
 
 			// TODO: need to show in center
 			Stage dialogStage = new Stage();
+			dialogStage.initOwner(SellitApplication.getPrimaryStage());
 			dialogStage.setTitle("");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			Scene scene = new Scene(pane);
+			scene.getStylesheets().add("/css/bootstrap3.css");
 			dialogStage.setScene(scene);
+
+			Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+			dialogStage.setX((screenBounds.getWidth() - 1920) / 2);
+			dialogStage.setY((screenBounds.getHeight() - 300) / 2);
+			
+			dialogStage.initStyle(StageStyle.UNDECORATED);
 
 			controller.setDialogStage(dialogStage);
 			dialogStage.showAndWait();
