@@ -8,21 +8,21 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1920.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../../../../resources/css/bootstrap3.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sellit.controller.inventory.DepartmentListViewController">
+<AnchorPane prefHeight="900.0" prefWidth="1700.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../../../../resources/css/bootstrap3.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sellit.controller.inventory.DepartmentListViewController">
    <children>
       <SplitPane dividerPositions="0.15" layoutX="93.0" layoutY="75.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="103.0" prefWidth="1918.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <Label layoutX="14.0" layoutY="60.0" text="Department Name" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="60.0" />
-                  <TextField fx:id="departmentNameField" layoutX="123.0" layoutY="53.0" AnchorPane.leftAnchor="123.0" AnchorPane.topAnchor="53.0" />
-                  <Button layoutX="1754.0" layoutY="52.0" mnemonicParsing="false" onAction="#modifyDepartment" prefHeight="30.0" prefWidth="150.0" text="Modify" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="52.0" />
-                  <Button layoutX="1592.0" layoutY="53.0" mnemonicParsing="false" onAction="#addNewDepartment" prefHeight="30.0" prefWidth="150.0" styleClass="plain" text="Add New" AnchorPane.rightAnchor="176.0" AnchorPane.topAnchor="53.0" />
-                  <Button layoutX="281.0" layoutY="51.0" mnemonicParsing="false" onAction="#searchDepartmentNameContaining" prefHeight="30.0" prefWidth="150.0" text="Search" />
+                  <Label layoutX="400.0" layoutY="47.0" text="Department Name" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="47.0" />
+                  <TextField fx:id="departmentNameField" layoutX="509.0" layoutY="40.0" prefWidth="220.0" AnchorPane.leftAnchor="509.0" AnchorPane.topAnchor="40.0" />
+                  <Button layoutX="1317.0" layoutY="30.0" mnemonicParsing="false" onAction="#modifyDepartment" prefHeight="50.0" prefWidth="220.0" styleClass="info" text="Modify" />
+                  <Button layoutX="1090.0" layoutY="30.0" mnemonicParsing="false" onAction="#addNewDepartment" prefHeight="50.0" prefWidth="220.0" styleClass="info" text="Add New" />
+                  <Button layoutX="739.0" layoutY="30.0" mnemonicParsing="false" onAction="#searchDepartmentNameContaining" prefHeight="50.0" prefWidth="220.0" styleClass="info" text="Search" />
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="361.0" prefWidth="798.0">
                <children>
-                  <TableView fx:id="departmentTable" layoutX="180.0" layoutY="120.0" prefHeight="505.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="departmentTable" layoutX="180.0" layoutY="79.0" prefHeight="811.0" prefWidth="1918.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="departmentIdColumn" editable="false" prefWidth="150.0" text="Department ID" />
                       <TableColumn fx:id="departmentNameColumn" editable="false" prefWidth="253.0" text="Name" />

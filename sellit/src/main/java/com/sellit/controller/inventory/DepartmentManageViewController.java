@@ -75,7 +75,7 @@ public class DepartmentManageViewController {
 
 	private boolean validate() {
 
-		if (ValidateUtil.invalidLength(departmentNameField, 50)) {
+		if (ValidateUtil.blankTextOrInvalidLength(departmentNameField, 50)) {
 			AppUtil.showPopupWindow("Department name is empty or has too many characters", "");
 			return false;
 		}

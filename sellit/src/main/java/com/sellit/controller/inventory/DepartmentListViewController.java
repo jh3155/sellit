@@ -13,6 +13,7 @@ import com.sellit.persistence.Product;
 import com.sellit.service.DepartmentService;
 import com.sellit.util.AppUtil;
 
+import javafx.application.Platform;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -60,17 +61,12 @@ public class DepartmentListViewController {
 				.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDepartmentName()));
 
 		departmentTable.setItems(null);
+
+		Platform.runLater(() -> departmentNameField.requestFocus());
 	}
 
 	@FXML
 	private void searchDepartmentNameContaining() {
-
-		if (StringUtils.isBlank(departmentNameField.getText())) {
-			AppUtil.showPopupWindow("Enter department name to search", "");
-			departmentNameField.requestFocus();
-			return;
-		}
-
 		List<Department> departments = departmentService.findByDepartmentNameContaining(departmentNameField.getText(),
 				StatusConstants.ACTIVE);
 		departmentTable.setItems(FXCollections.observableArrayList(departments));
