@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sellit.controller.Controller;
 import com.sellit.persistence.Product;
 import com.sellit.persistence.Product;
 import com.sellit.service.ProductService;
@@ -26,7 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
 @Component
-public class ProductListViewController {
+public class ProductListViewController extends Controller {
 
 	@Autowired
 	private ProductService productService;
@@ -131,7 +132,7 @@ public class ProductListViewController {
 		ProductManageViewController controller = fxmlLoader.getController();
 		controller.setProduct(product);
 
-		AppUtil.pushCenterPaneStack(pane);
+		AppUtil.pushCenterPaneStack(pane, this);
 	}
 
 	@FXML
@@ -148,7 +149,13 @@ public class ProductListViewController {
 		ProductManageViewController controller = fxmlLoader.getController();
 		controller.setProduct(product);
 
-		AppUtil.pushCenterPaneStack(pane);
+		AppUtil.pushCenterPaneStack(pane, this);
+	}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

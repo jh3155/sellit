@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.springframework.stereotype.Component;
 
+import com.sellit.controller.Controller;
 import com.sellit.util.AppUtil;
 
 import javafx.fxml.FXML;
@@ -11,7 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
 @Component
-public class InventoryMainViewController {
+public class InventoryMainViewController extends Controller {
 
 	/**
 	 * The constructor. The constructor is called before the initialize() method.
@@ -35,7 +36,7 @@ public class InventoryMainViewController {
 		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/DepartmentListView.fxml");
 		Pane pane = fxmlLoader.load();
 
-		AppUtil.pushCenterPaneStack(pane);
+		AppUtil.pushCenterPaneStack(pane, this);
 	}
 
 	@FXML
@@ -43,7 +44,13 @@ public class InventoryMainViewController {
 		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/ProductListView.fxml");
 		Pane pane = fxmlLoader.load();
 
-		AppUtil.pushCenterPaneStack(pane);
+		AppUtil.pushCenterPaneStack(pane, this);
+	}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

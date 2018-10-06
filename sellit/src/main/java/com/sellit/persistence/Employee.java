@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sellit.constants.EmployeeConstants;
+
 @Entity
 @Table(name = "EMPLOYEE")
 public class Employee {
@@ -29,7 +31,7 @@ public class Employee {
 	private String pin;
 
 	@Column(name = "EMPLOYEE_LEVEL")
-	private String employeeLevel;
+	private String employeeLevel = EmployeeConstants.LEVEL_STAFF;
 
 	@Column(name = "STATUS")
 	private String status;

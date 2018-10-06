@@ -3,6 +3,8 @@ package com.sellit.util;
 import java.io.IOException;
 
 import com.sellit.SellitApplication;
+import com.sellit.container.PaneContainer;
+import com.sellit.controller.Controller;
 import com.sellit.controller.PopupWindowController;
 
 import javafx.fxml.FXMLLoader;
@@ -23,15 +25,23 @@ public class AppUtil {
 		return fxmlLoader;
 	}
 
-	public static void pushCenterPaneStack(Pane pane) {
-		SellitApplication.getRootLayout().setCenter(SellitApplication.getCenterPanes().push(pane));
+	public static void pushCenterPaneStack(Pane pane, Controller controller) {
+		PaneContainer paneContainer = new PaneContainer();
+		paneContainer.setPane(pane);
+		paneContainer.setController(controller);
+		pushCenterPaneStack(paneContainer);
 	}
 
-	public static void pushCenterPaneStack(Pane pane, boolean clearStackBeforePush) {
+	public static void pushCenterPaneStack(PaneContainer paneContainer) {
+		Pane pane = SellitApplication.getCenterPanes().push(paneContainer).getPane();
+		SellitApplication.getRootLayout().setCenter(pane);
+	}
+
+	public static void pushCenterPaneStack(Pane pane, Controller controller, boolean clearStackBeforePush) {
 		if (clearStackBeforePush) {
 			SellitApplication.getCenterPanes().clear();
 		}
-		pushCenterPaneStack(pane);
+		pushCenterPaneStack(pane, controller);
 	}
 
 	public static void popCenterPaneStack() {
@@ -40,8 +50,11 @@ public class AppUtil {
 			return;
 		}
 
-		SellitApplication.getCenterPanes().pop();
-		Pane previousPane = SellitApplication.getCenterPanes().peek();
+		PaneContainer paneContainer = SellitApplication.getCenterPanes().pop();
+		paneContainer.getController().refresh();
+
+		PaneContainer prevPaneContainer = SellitApplication.getCenterPanes().peek();
+		Pane previousPane = prevPaneContainer.getPane();
 		SellitApplication.getRootLayout().setCenter(previousPane);
 	}
 
@@ -65,7 +78,7 @@ public class AppUtil {
 			Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 			dialogStage.setX((screenBounds.getWidth() - 1920) / 2);
 			dialogStage.setY((screenBounds.getHeight() - 300) / 2);
-			
+
 			dialogStage.initStyle(StageStyle.UNDECORATED);
 
 			controller.setDialogStage(dialogStage);
@@ -73,15 +86,6 @@ public class AppUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-	}
-
-	public static void showDashboard() throws IOException {
-
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/Dashboard.fxml");
-		Pane pane = fxmlLoader.load();
-
-		pushCenterPaneStack(pane, true);
 
 	}
 

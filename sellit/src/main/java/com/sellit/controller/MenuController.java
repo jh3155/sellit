@@ -15,7 +15,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 @Component
-public class MenuController {
+public class MenuController extends Controller {
 
 	@FXML
 	private Button btnLogo;
@@ -49,7 +49,7 @@ public class MenuController {
 		//
 		// btnLogo.setBackground(background);
 
-		AppUtil.showDashboard();
+		showDashboard();
 	}
 
 	@FXML
@@ -67,12 +67,15 @@ public class MenuController {
 		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/InventoryMainView.fxml");
 		Pane productDashboard = fxmlLoader.load();
 
-		AppUtil.pushCenterPaneStack(productDashboard, true);
+		AppUtil.pushCenterPaneStack(productDashboard, this, true);
 	}
 
 	@FXML
 	private void showEmployee() throws IOException {
-		// TODO:
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/employee/EmployeeListView.fxml");
+		Pane pane = fxmlLoader.load();
+
+		AppUtil.pushCenterPaneStack(pane, this, true);
 	}
 
 	@FXML
@@ -90,8 +93,20 @@ public class MenuController {
 		// TODO:
 	}
 
+	public void showDashboard() throws IOException {
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/Dashboard.fxml");
+		Pane pane = fxmlLoader.load();
+
+		AppUtil.pushCenterPaneStack(pane, this, true);
+	}
+
 	@FXML
 	private void exitProgram() {
 		Platform.exit();
+	}
+
+	@Override
+	public void refresh() {
+
 	}
 }

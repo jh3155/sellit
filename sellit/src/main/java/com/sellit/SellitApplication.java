@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import com.sellit.container.PaneContainer;
 import com.sellit.util.AppUtil;
 
 import javafx.application.Application;
@@ -14,7 +15,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
@@ -28,7 +28,7 @@ public class SellitApplication extends Application {
 	private Parent root;
 	private static Stage primaryStage;
 	private static BorderPane rootLayout;
-	private static Stack<Pane> centerPanes;
+	private static Stack<PaneContainer> centerPanes;
 
 	@Override
 	public void init() throws Exception {
@@ -66,7 +66,7 @@ public class SellitApplication extends Application {
 		return rootLayout;
 	}
 
-	public static Stack<Pane> getCenterPanes() {
+	public static Stack<PaneContainer> getCenterPanes() {
 		return centerPanes;
 	}
 
@@ -93,7 +93,7 @@ public class SellitApplication extends Application {
 		primaryStage.setX((screenBounds.getWidth() - 1920) / 2);
 		primaryStage.setY((screenBounds.getHeight() - 1080) / 2);
 
-		 primaryStage.initStyle(StageStyle.UNDECORATED);
+		primaryStage.initStyle(StageStyle.UNDECORATED);
 
 		primaryStage.setScene(scene);
 
@@ -120,4 +120,5 @@ public class SellitApplication extends Application {
 
 		rootLayout.setBottom(pane);
 	}
+
 }

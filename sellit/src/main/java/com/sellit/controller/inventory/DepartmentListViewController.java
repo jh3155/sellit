@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sellit.constants.StatusConstants;
+import com.sellit.controller.Controller;
 import com.sellit.persistence.Department;
 import com.sellit.persistence.Product;
 import com.sellit.service.DepartmentService;
@@ -25,7 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
 @Component
-public class DepartmentListViewController {
+public class DepartmentListViewController extends Controller {
 
 	@Autowired
 	private DepartmentService departmentService;
@@ -84,7 +85,7 @@ public class DepartmentListViewController {
 		DepartmentManageViewController controller = fxmlLoader.getController();
 		controller.setDepartment(department);
 
-		AppUtil.pushCenterPaneStack(pane);
+		AppUtil.pushCenterPaneStack(pane, this);
 	}
 
 	@FXML
@@ -104,7 +105,13 @@ public class DepartmentListViewController {
 		Department department = departmentService.findById(selectedDepartment.getDepartmentId());
 		controller.setDepartment(department);
 
-		AppUtil.pushCenterPaneStack(pane);
+		AppUtil.pushCenterPaneStack(pane, this);
+	}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

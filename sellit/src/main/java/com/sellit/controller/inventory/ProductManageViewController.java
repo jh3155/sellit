@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sellit.constants.StatusConstants;
+import com.sellit.controller.Controller;
 import com.sellit.persistence.Department;
 import com.sellit.persistence.Product;
 import com.sellit.service.DepartmentService;
@@ -23,7 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
 
 @Component
-public class ProductManageViewController {
+public class ProductManageViewController extends Controller {
 
 	@Autowired
 	private ProductService productService;
@@ -177,6 +178,12 @@ public class ProductManageViewController {
 		}
 
 		return true;
+	}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+
 	}
 
 }
