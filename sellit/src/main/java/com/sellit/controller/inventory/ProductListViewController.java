@@ -8,8 +8,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sellit.constants.InventoryConstants;
 import com.sellit.controller.Controller;
-import com.sellit.persistence.Product;
+import com.sellit.persistence.Employee;
 import com.sellit.persistence.Product;
 import com.sellit.service.ProductService;
 import com.sellit.util.AppUtil;
@@ -21,6 +22,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -31,6 +33,9 @@ public class ProductListViewController extends Controller {
 
 	@Autowired
 	private ProductService productService;
+
+	@FXML
+	private ComboBox<String> searchCombo;
 
 	@FXML
 	private TableView<Product> productTable;
@@ -57,10 +62,7 @@ public class ProductListViewController extends Controller {
 	private TableColumn<Product, BigDecimal> salesAmountColumn;
 
 	@FXML
-	private TextField barcodeField;
-
-	@FXML
-	private TextField productNameField;
+	private TextField searchField;
 
 	/**
 	 * The constructor. The constructor is called before the initialize() method.
@@ -74,6 +76,9 @@ public class ProductListViewController extends Controller {
 	 */
 	@FXML
 	private void initialize() {
+
+		searchCombo.getItems().addAll(InventoryConstants.SEARCH_METHOD);
+		searchCombo.getSelectionModel().select(InventoryConstants.PRODUCT_NAME);
 
 		productIdColumn
 				.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getProductId()).asObject());
@@ -94,33 +99,32 @@ public class ProductListViewController extends Controller {
 	@FXML
 	private void search() {
 
-		if (StringUtils.isBlank(productNameField.getText())) {
-			AppUtil.showPopupWindow("Enter product name to search", "");
-			productNameField.requestFocus();
-			return;
+		String method = searchCombo.getSelectionModel().getSelectedItem();
+
+		if (InventoryConstants.BARCODE.equals(method)) {
+			searchBarcode();
+		} else if (InventoryConstants.PRODUCT_NAME.equals(method)) {
+			searchProductName();
 		}
 
-		List<Product> products = productService.findByFullNameContaining(productNameField.getText());
+	}
+
+	@FXML
+	private void searchProductName() {
+
+		List<Product> products = productService.findByFullNameContaining(searchField.getText());
 		productTable.setItems(FXCollections.observableArrayList(products));
 
-		productNameField.requestFocus();
+		searchField.requestFocus();
 	}
 
 	@FXML
 	private void searchBarcode() {
 
-		if (StringUtils.isBlank(barcodeField.getText())) {
-			AppUtil.showPopupWindow("Enter barcode to search", "");
-			barcodeField.requestFocus();
-			return;
-		}
-
-		String searchText = barcodeField.getText();
-
-		List<Product> products = productService.findByBarcode(searchText);
+		List<Product> products = productService.findByBarcode(searchField.getText());
 		productTable.setItems(FXCollections.observableArrayList(products));
 
-		barcodeField.requestFocus();
+		searchField.requestFocus();
 	}
 
 	@FXML
