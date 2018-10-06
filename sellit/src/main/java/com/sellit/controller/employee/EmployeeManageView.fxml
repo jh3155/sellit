@@ -9,21 +9,21 @@
 
 <AnchorPane prefHeight="1080.0" prefWidth="1700.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../../../../resources/css/bootstrap3.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sellit.controller.employee.EmployeeManageViewController">
    <children>
-      <TitledPane animated="false" layoutX="638.0" layoutY="254.0" prefHeight="572.0" prefWidth="424.0" styleClass="info" text="Department">
+      <TitledPane animated="false" layoutX="638.0" layoutY="311.0" prefHeight="500.0" prefWidth="450.0" styleClass="info" text="Employee">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="254.0" prefWidth="422.0">
                <children>
-                  <Label layoutX="55.0" layoutY="56.0" text="Employee Name" />
-                  <TextField fx:id="employeeNameField" layoutX="221.0" layoutY="52.0" />
-                  <Button layoutX="271.0" layoutY="484.0" mnemonicParsing="false" onAction="#save" prefHeight="30.0" prefWidth="100.0" styleClass="success" text="Save" />
+                  <Label layoutX="54.0" layoutY="57.0" text="Employee Name" />
+                  <TextField fx:id="employeeNameField" layoutX="221.0" layoutY="50.0" />
+                  <Button layoutX="271.0" layoutY="337.0" mnemonicParsing="false" onAction="#save" prefHeight="30.0" prefWidth="100.0" styleClass="success" text="Save" />
                   <Label layoutX="54.0" layoutY="97.0" text="Email Address" />
-                  <TextField fx:id="emailField" layoutX="220.0" layoutY="93.0" />
-                  <Label layoutX="54.0" layoutY="140.0" text="Phone Number" />
-                  <TextField fx:id="phoneField" layoutX="220.0" layoutY="136.0" />
-                  <Label layoutX="54.0" layoutY="184.0" text="PIN" />
-                  <TextField fx:id="pinField" layoutX="220.0" layoutY="180.0" />
-                  <Label layoutX="54.0" layoutY="235.0" text="Level" />
-                  <ComboBox fx:id="employeeLevelCombo" layoutX="221.0" layoutY="231.0" prefWidth="150.0" />
+                  <TextField fx:id="emailField" layoutX="220.0" layoutY="90.0" />
+                  <Label layoutX="54.0" layoutY="137.0" text="Phone Number" />
+                  <TextField fx:id="phoneField" layoutX="220.0" layoutY="130.0" />
+                  <Label layoutX="54.0" layoutY="177.0" text="PIN" />
+                  <TextField fx:id="pinField" layoutX="220.0" layoutY="170.0" />
+                  <Label layoutX="54.0" layoutY="217.0" text="Level" />
+                  <ComboBox fx:id="employeeLevelCombo" layoutX="221.0" layoutY="210.0" prefWidth="150.0" />
                </children>
             </AnchorPane>
         </content>

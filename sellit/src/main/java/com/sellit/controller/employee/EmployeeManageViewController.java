@@ -102,6 +102,18 @@ public class EmployeeManageViewController extends Controller {
 		if (ValidateUtil.blankTextOrInvalidLength(employeeNameField, 50)) {
 			AppUtil.showPopupWindow("Employee name is empty or has too many characters", "");
 			return false;
+		} else if (ValidateUtil.blankTextOrInvalidLength(emailField, 100)) {
+			AppUtil.showPopupWindow("Email is empty or has too many characters", "");
+			return false;
+		} else if (ValidateUtil.blankTextOrInvalidLength(phoneField, 50)) {
+			AppUtil.showPopupWindow("Phone is empty or has too many characters", "");
+			return false;
+		} else if (ValidateUtil.blankTextOrInvalidLength(pinField, 20)) {
+			AppUtil.showPopupWindow("PIN is empty or has too many characters", "");
+			return false;
+		} else if (employeeLevelCombo.getSelectionModel().getSelectedItem() == null) {
+			AppUtil.showPopupWindow("Select Employee Level", "");
+			return false;
 		}
 
 		return true;

@@ -12,13 +12,13 @@
    <children>
       <SplitPane dividerPositions="0.15" layoutX="93.0" layoutY="75.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="103.0" prefWidth="1918.0" style="-fx-background-color: #FFFFFF;">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="103.0" prefWidth="1700.0" style="-fx-background-color: #FFFFFF;">
                <children>
-                  <Label layoutX="400.0" layoutY="47.0" text="Department Name" AnchorPane.leftAnchor="400.0" AnchorPane.topAnchor="47.0" />
+                  <Label layoutX="400.0" layoutY="47.0" text="Department Name" />
                   <TextField fx:id="departmentNameField" layoutX="509.0" layoutY="40.0" prefWidth="220.0" AnchorPane.leftAnchor="509.0" AnchorPane.topAnchor="40.0" />
                   <Button layoutX="1317.0" layoutY="30.0" mnemonicParsing="false" onAction="#modifyDepartment" prefHeight="50.0" prefWidth="220.0" styleClass="info" text="Modify" />
                   <Button layoutX="1090.0" layoutY="30.0" mnemonicParsing="false" onAction="#addNewDepartment" prefHeight="50.0" prefWidth="220.0" styleClass="info" text="Add New" />
-                  <Button layoutX="739.0" layoutY="30.0" mnemonicParsing="false" onAction="#searchDepartmentNameContaining" prefHeight="50.0" prefWidth="220.0" styleClass="info" text="Search" />
+                  <Button layoutX="739.0" layoutY="30.0" mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="220.0" styleClass="info" text="Search" />
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="361.0" prefWidth="798.0">
                <children>

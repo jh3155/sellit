@@ -28,7 +28,7 @@ public class AppUtil {
 	public static void pushCenterPaneStack(Pane pane, Controller controller) {
 		PaneContainer paneContainer = new PaneContainer();
 		paneContainer.setPane(pane);
-		paneContainer.setController(controller);
+		paneContainer.setParentController(controller);
 		pushCenterPaneStack(paneContainer);
 	}
 
@@ -51,7 +51,7 @@ public class AppUtil {
 		}
 
 		PaneContainer paneContainer = SellitApplication.getCenterPanes().pop();
-		paneContainer.getController().refresh();
+		paneContainer.getParentController().refresh();
 
 		PaneContainer prevPaneContainer = SellitApplication.getCenterPanes().peek();
 		Pane previousPane = prevPaneContainer.getPane();

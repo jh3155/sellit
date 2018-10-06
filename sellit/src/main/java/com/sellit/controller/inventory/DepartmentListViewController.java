@@ -67,7 +67,7 @@ public class DepartmentListViewController extends Controller {
 	}
 
 	@FXML
-	private void searchDepartmentNameContaining() {
+	private void search() {
 		List<Department> departments = departmentService.findByDepartmentNameContaining(departmentNameField.getText(),
 				StatusConstants.ACTIVE);
 		departmentTable.setItems(FXCollections.observableArrayList(departments));
@@ -110,8 +110,7 @@ public class DepartmentListViewController extends Controller {
 
 	@Override
 	public void refresh() {
-		// TODO Auto-generated method stub
-
+		search();
 	}
 
 }

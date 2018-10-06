@@ -8,7 +8,7 @@ public class PaneContainer {
 
 	private Pane pane;
 
-	private Controller controller;
+	private Controller parentController;
 
 	public Pane getPane() {
 		return pane;
@@ -18,12 +18,12 @@ public class PaneContainer {
 		this.pane = pane;
 	}
 
-	public Controller getController() {
-		return controller;
+	public Controller getParentController() {
+		return parentController;
 	}
 
-	public void setController(Controller controller) {
-		this.controller = controller;
+	public void setParentController(Controller controller) {
+		this.parentController = controller;
 	}
 
 }

@@ -85,7 +85,7 @@ public class EmployeeListViewController extends Controller {
 	}
 
 	@FXML
-	private void searchEmployeeNameContaining() {
+	private void search() {
 		List<Employee> employees = employeeService.findByEmployeeNameContaining(employeeNameField.getText(),
 				StatusConstants.ACTIVE);
 		employeeTable.setItems(FXCollections.observableArrayList(employees));
@@ -127,7 +127,7 @@ public class EmployeeListViewController extends Controller {
 
 	@Override
 	public void refresh() {
-		searchEmployeeNameContaining();
+		search();
 	}
 
 }

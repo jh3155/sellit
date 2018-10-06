@@ -18,7 +18,7 @@
                   <TextField fx:id="employeeNameField" layoutX="509.0" layoutY="40.0" prefWidth="220.0" AnchorPane.leftAnchor="509.0" AnchorPane.topAnchor="40.0" />
                   <Button layoutX="1317.0" layoutY="30.0" mnemonicParsing="false" onAction="#modifyEmployee" prefHeight="50.0" prefWidth="220.0" styleClass="info" text="Modify" />
                   <Button layoutX="1090.0" layoutY="30.0" mnemonicParsing="false" onAction="#addNewEmployee" prefHeight="50.0" prefWidth="220.0" styleClass="info" text="Add New" />
-                  <Button layoutX="739.0" layoutY="30.0" mnemonicParsing="false" onAction="#searchEmployeeNameContaining" prefHeight="50.0" prefWidth="220.0" styleClass="info" text="Search" />
+                  <Button layoutX="739.0" layoutY="30.0" mnemonicParsing="false" onAction="#search" prefHeight="50.0" prefWidth="220.0" styleClass="info" text="Search" />
                </children></AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="361.0" prefWidth="798.0">
                <children>

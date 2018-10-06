@@ -92,7 +92,7 @@ public class ProductListViewController extends Controller {
 	}
 
 	@FXML
-	private void searchProductNameContaining() {
+	private void search() {
 
 		if (StringUtils.isBlank(productNameField.getText())) {
 			AppUtil.showPopupWindow("Enter product name to search", "");
@@ -154,8 +154,7 @@ public class ProductListViewController extends Controller {
 
 	@Override
 	public void refresh() {
-		// TODO Auto-generated method stub
-
+		search();
 	}
 
 }
