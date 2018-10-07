@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.sellit.container.PaneContainer;
+import com.sellit.persistence.Employee;
 import com.sellit.util.AppUtil;
 
 import javafx.application.Application;
@@ -30,6 +31,8 @@ public class SellitApplication extends Application {
 	private static BorderPane rootLayout;
 	private static Stack<PaneContainer> centerPanes;
 
+	private static Employee loggedInEmployee;
+
 	@Override
 	public void init() throws Exception {
 		springContext = SpringApplication.run(SellitApplication.class);
@@ -47,8 +50,8 @@ public class SellitApplication extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Sellit");
+		SellitApplication.primaryStage = primaryStage;
+		SellitApplication.primaryStage.setTitle("Sellit");
 
 		initializeRootLayout();
 
@@ -72,6 +75,14 @@ public class SellitApplication extends Application {
 
 	public static Stage getPrimaryStage() {
 		return primaryStage;
+	}
+
+	public static Employee getLoggedInEmployee() {
+		return loggedInEmployee;
+	}
+
+	public static void setLoggedInEmployee(Employee loggedInEmployee) {
+		SellitApplication.loggedInEmployee = loggedInEmployee;
 	}
 
 	/**

@@ -1,5 +1,6 @@
 package com.sellit.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sellit.SellitApplication;
 import com.sellit.dao.EmployeeDao;
 import com.sellit.persistence.Department;
 import com.sellit.persistence.Employee;
@@ -32,6 +34,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee save(Employee employee) {
+
+		if (employee.getCreatedBy() == null) {
+			employee.setCreatedBy(SellitApplication.getLoggedInEmployee());
+			employee.setCreatedDatetime(LocalDateTime.now());
+		}
+
+		employee.setUpdatedBy(SellitApplication.getLoggedInEmployee());
+		employee.setUpdatedDatetime(LocalDateTime.now());
+
 		return employeeDao.save(employee);
 	}
 

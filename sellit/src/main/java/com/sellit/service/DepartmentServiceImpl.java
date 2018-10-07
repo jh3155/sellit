@@ -1,5 +1,6 @@
 package com.sellit.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sellit.SellitApplication;
 import com.sellit.dao.DepartmentDao;
 import com.sellit.persistence.Department;
 import com.sellit.persistence.Department;
@@ -21,6 +23,15 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 	@Override
 	public Department save(Department department) {
+
+		if (department.getCreatedBy() == null) {
+			department.setCreatedBy(SellitApplication.getLoggedInEmployee());
+			department.setCreatedDatetime(LocalDateTime.now());
+		}
+
+		department.setUpdatedBy(SellitApplication.getLoggedInEmployee());
+		department.setUpdatedDatetime(LocalDateTime.now());
+
 		return departmentDao.save(department);
 	}
 
