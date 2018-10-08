@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1920.0" style="-fx-background-color: #2BBBAD;" stylesheets="@../../../../resources/css/bootstrap3.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sellit.controller.LoginController">
+   <children>
+      <TitledPane animated="false" layoutX="735.0" layoutY="50.0" prefHeight="700.0" prefWidth="450.0" styleClass="info" text="Login">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="561.0" prefWidth="385.0">
+               <children>
+                  <Label layoutX="60.0" layoutY="57.0" text="PIN" />
+                  <TextField fx:id="pinField" layoutX="170.0" layoutY="51.0" onAction="#login" prefWidth="211.0" />
+                  <Button layoutX="282.0" layoutY="455.0" mnemonicParsing="false" onAction="#login" prefHeight="100.0" prefWidth="100.0" text="Login">
+                     <styleClass>
+                        <String fx:value="success" />
+                        <String fx:value="flat-button" />
+                     </styleClass></Button>
+                  <Button layoutX="281.0" layoutY="124.0" mnemonicParsing="false" onAction="#appendPinText9" prefHeight="100.0" prefWidth="100.0" text="9">
+                     <styleClass>
+                        <String fx:value="flat-button" />
+                        <String fx:value="info" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="171.0" layoutY="124.0" mnemonicParsing="false" onAction="#appendPinText8" prefHeight="100.0" prefWidth="100.0" text="8">
+                     <styleClass>
+                        <String fx:value="flat-button" />
+                        <String fx:value="info" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="60.0" layoutY="124.0" mnemonicParsing="false" onAction="#appendPinText7" prefHeight="100.0" prefWidth="100.0" text="7">
+                     <styleClass>
+                        <String fx:value="flat-button" />
+                        <String fx:value="info" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="282.0" layoutY="235.0" mnemonicParsing="false" onAction="#appendPinText6" prefHeight="100.0" prefWidth="100.0" text="6">
+                     <styleClass>
+                        <String fx:value="flat-button" />
+                        <String fx:value="info" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="172.0" layoutY="235.0" mnemonicParsing="false" onAction="#appendPinText5" prefHeight="100.0" prefWidth="100.0" text="5">
+                     <styleClass>
+                        <String fx:value="flat-button" />
+                        <String fx:value="info" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="61.0" layoutY="235.0" mnemonicParsing="false" onAction="#appendPinText4" prefHeight="100.0" prefWidth="100.0" text="4">
+                     <styleClass>
+                        <String fx:value="flat-button" />
+                        <String fx:value="info" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="282.0" layoutY="345.0" mnemonicParsing="false" onAction="#appendPinText3" prefHeight="100.0" prefWidth="100.0" text="3">
+                     <styleClass>
+                        <String fx:value="flat-button" />
+                        <String fx:value="info" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="172.0" layoutY="345.0" mnemonicParsing="false" onAction="#appendPinText2" prefHeight="100.0" prefWidth="100.0" text="2">
+                     <styleClass>
+                        <String fx:value="flat-button" />
+                        <String fx:value="info" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="61.0" layoutY="345.0" mnemonicParsing="false" onAction="#appendPinText1" prefHeight="100.0" prefWidth="100.0" text="1">
+                     <styleClass>
+                        <String fx:value="flat-button" />
+                        <String fx:value="info" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="61.0" layoutY="455.0" mnemonicParsing="false" onAction="#clearPin" prefHeight="100.0" prefWidth="100.0" text="Clear">
+                     <styleClass>
+                        <String fx:value="flat-button" />
+                        <String fx:value="info" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="171.0" layoutY="455.0" mnemonicParsing="false" onAction="#appendPinText0" prefHeight="100.0" prefWidth="100.0" text="0">
+                     <styleClass>
+                        <String fx:value="flat-button" />
+                        <String fx:value="info" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </AnchorPane>
+        </content>
+      </TitledPane>
+   </children>
+</AnchorPane>

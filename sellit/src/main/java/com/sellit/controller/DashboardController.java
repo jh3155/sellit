@@ -30,4 +30,9 @@ public class DashboardController {
 
 	}
 
+	@FXML
+	private void logout() throws IOException {
+		AppUtil.showLoginWindow();
+	}
+
 }

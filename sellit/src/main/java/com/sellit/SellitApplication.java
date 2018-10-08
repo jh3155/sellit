@@ -58,6 +58,8 @@ public class SellitApplication extends Application {
 		// showHeader();
 		showMenu();
 		// showFooter();
+		
+		AppUtil.showLoginWindow();
 
 	}
 

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.springframework.stereotype.Component;
 
+import com.sellit.SellitApplication;
 import com.sellit.util.AppUtil;
 
 import javafx.application.Platform;
@@ -48,13 +49,16 @@ public class MenuController extends Controller {
 		// Background background = new Background(backgroundImage);
 		//
 		// btnLogo.setBackground(background);
-
-		showDashboard();
 	}
 
 	@FXML
 	private void showPrevious() throws IOException {
 		AppUtil.popCenterPaneStack();
+	}
+
+	@FXML
+	private void showHome() throws IOException {
+		AppUtil.showLoginWindow();
 	}
 
 	@FXML
@@ -64,6 +68,12 @@ public class MenuController extends Controller {
 
 	@FXML
 	private void showInventory() throws IOException {
+
+		if (SellitApplication.getLoggedInEmployee() == null) {
+			AppUtil.showLoginWindow();
+			return;
+		}
+
 		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/InventoryMainView.fxml");
 		Pane productDashboard = fxmlLoader.load();
 
@@ -72,6 +82,12 @@ public class MenuController extends Controller {
 
 	@FXML
 	private void showEmployee() throws IOException {
+
+		if (SellitApplication.getLoggedInEmployee() == null) {
+			AppUtil.showLoginWindow();
+			return;
+		}
+
 		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/employee/EmployeeListView.fxml");
 		Pane pane = fxmlLoader.load();
 
@@ -93,7 +109,7 @@ public class MenuController extends Controller {
 		// TODO:
 	}
 
-	public void showDashboard() throws IOException {
+	private void showDashboard() throws IOException {
 		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/Dashboard.fxml");
 		Pane pane = fxmlLoader.load();
 
