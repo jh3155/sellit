@@ -12,4 +12,6 @@ public interface EmployeeService {
 
 	List<Employee> findByEmployeeNameContaining(String employeeName, String status);
 
+	Employee findByPin(String pin);
+
 }

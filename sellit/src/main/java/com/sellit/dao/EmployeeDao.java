@@ -15,4 +15,6 @@ public interface EmployeeDao extends JpaRepository<Employee, Long> {
 	List<Employee> findByEmployeeNameContaining(@Param("employeeName") String employeeName,
 			@Param("status") String status);
 
+	List<Employee> findByPinAndStatus(String pin, String status);
+
 }
