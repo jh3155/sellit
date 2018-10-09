@@ -46,8 +46,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> findByFullNameContaining(String fullName) {
-		return productDao.findByFullNameContaining(fullName);
+	public List<Product> findByProductNameInEnglishContaining(String productName) {
+		return productDao.findByProductNameInEnglishContaining(productName);
 	}
 
 }

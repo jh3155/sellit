@@ -57,11 +57,6 @@ public class MenuController extends Controller {
 	}
 
 	@FXML
-	private void showHome() throws IOException {
-		AppUtil.showLoginWindow();
-	}
-
-	@FXML
 	private void showSale() throws IOException {
 		// TODO:
 	}
@@ -109,6 +104,7 @@ public class MenuController extends Controller {
 		// TODO:
 	}
 
+	@FXML
 	private void showDashboard() throws IOException {
 		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/Dashboard.fxml");
 		Pane pane = fxmlLoader.load();

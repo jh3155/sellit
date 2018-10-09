@@ -13,6 +13,6 @@ public interface ProductService {
 
 	List<Product> findByBarcode(String barcode);
 
-	List<Product> findByFullNameContaining(String fullName);
+	List<Product> findByProductNameInEnglishContaining(String productName);
 
 }

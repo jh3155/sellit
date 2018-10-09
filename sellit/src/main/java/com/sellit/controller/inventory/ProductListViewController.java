@@ -85,7 +85,8 @@ public class ProductListViewController extends Controller {
 		departmentColumn.setCellValueFactory(
 				cellData -> new SimpleStringProperty(cellData.getValue().getDepartment().getDepartmentName()));
 		barcodeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getBarcode()));
-		productNameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFullName()));
+		productNameColumn.setCellValueFactory(
+				cellData -> new SimpleStringProperty(cellData.getValue().getProductNameInEnglish()));
 		onHandColumn.setCellValueFactory(
 				cellData -> new SimpleIntegerProperty(cellData.getValue().getInventoryOnHand()).asObject());
 		costAmountColumn.setCellValueFactory(
@@ -112,7 +113,7 @@ public class ProductListViewController extends Controller {
 	@FXML
 	private void searchProductName() {
 
-		List<Product> products = productService.findByFullNameContaining(searchField.getText());
+		List<Product> products = productService.findByProductNameInEnglishContaining(searchField.getText());
 		productTable.setItems(FXCollections.observableArrayList(products));
 
 		searchField.requestFocus();

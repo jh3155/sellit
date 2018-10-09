@@ -13,25 +13,23 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="75.0" layoutY="138.0" text="Full name" />
-                  <Label layoutX="75.0" layoutY="98.0" text="Barcode" />
+                  <Label layoutX="62.0" layoutY="98.0" text="Barcode" />
                   <TextField fx:id="barcodeField" layoutX="239.0" layoutY="91.0" />
-                  <TextField fx:id="fullNameField" layoutX="239.0" layoutY="131.0" />
                   <Button layoutX="290.0" layoutY="456.0" mnemonicParsing="false" onAction="#save" prefHeight="30.0" prefWidth="100.0" styleClass="success" text="Save" />
-                  <Label layoutX="75.0" layoutY="218.0" text="Short name in other langauge" />
-                  <Label layoutX="75.0" layoutY="178.0" text="Short name in English" />
-                  <TextField fx:id="shortNameInEnglishField" layoutX="239.0" layoutY="171.0" />
-                  <TextField fx:id="shortNameInOtherLanguageField" layoutX="239.0" layoutY="211.0" />
-                  <Label layoutX="75.0" layoutY="298.0" text="Safety inventory on hand" />
-                  <Label layoutX="75.0" layoutY="258.0" text="Inventory on hand" />
-                  <TextField fx:id="inventoryOnHandField" layoutX="239.0" layoutY="251.0" />
-                  <TextField fx:id="safetyInventoryOnHandField" layoutX="239.0" layoutY="291.0" />
-                  <Label layoutX="75.0" layoutY="378.0" text="Sales amount" />
-                  <Label layoutX="75.0" layoutY="338.0" text="Cost amount" />
-                  <TextField fx:id="costAmountField" layoutX="239.0" layoutY="331.0" />
-                  <TextField fx:id="salesAmountField" layoutX="239.0" layoutY="371.0" />
+                  <Label layoutX="62.0" layoutY="178.0" text="Product name in other langauge" />
+                  <Label layoutX="62.0" layoutY="138.0" text="Product name in English" />
+                  <TextField fx:id="productNameInEnglishField" layoutX="239.0" layoutY="131.0" />
+                  <TextField fx:id="productNameInOtherLanguageField" layoutX="239.0" layoutY="171.0" />
+                  <Label layoutX="62.0" layoutY="258.0" text="Safety inventory on hand" />
+                  <Label layoutX="62.0" layoutY="218.0" text="Inventory on hand" />
+                  <TextField fx:id="inventoryOnHandField" layoutX="239.0" layoutY="211.0" />
+                  <TextField fx:id="safetyInventoryOnHandField" layoutX="239.0" layoutY="251.0" />
+                  <Label layoutX="62.0" layoutY="338.0" text="Sales amount" />
+                  <Label layoutX="62.0" layoutY="298.0" text="Cost amount" />
+                  <TextField fx:id="costAmountField" layoutX="239.0" layoutY="291.0" />
+                  <TextField fx:id="salesAmountField" layoutX="239.0" layoutY="331.0" />
                   <ChoiceBox fx:id="departmentChoiceBox" layoutX="239.0" layoutY="51.0" prefWidth="150.0" />
-                  <Label layoutX="75.0" layoutY="58.0" text="Department" />
+                  <Label layoutX="62.0" layoutY="58.0" text="Department" />
                </children>
             </AnchorPane>
         </content>

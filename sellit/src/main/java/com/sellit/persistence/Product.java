@@ -30,14 +30,11 @@ public class Product {
 	@Column(name = "BARCODE")
 	private String barcode;
 
-	@Column(name = "FULL_NAME")
-	private String fullName;
+	@Column(name = "PRODUCT_NAME_ENG")
+	private String productNameInEnglish;
 
-	@Column(name = "SHORT_NAME_ENG")
-	private String shortNameInEnglish;
-
-	@Column(name = "SHORT_NAME_OTHER")
-	private String shortNameInOtherLanguage;
+	@Column(name = "PRODUCT_NAME_OTHER")
+	private String productNameInOtherLanguage;
 
 	@Column(name = "INVENTORY_ON_HAND")
 	private Integer inventoryOnHand;
@@ -89,28 +86,20 @@ public class Product {
 		this.barcode = barcode;
 	}
 
-	public String getFullName() {
-		return fullName;
+	public String getProductNameInEnglish() {
+		return productNameInEnglish;
 	}
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setProductNameInEnglish(String productNameInEnglish) {
+		this.productNameInEnglish = productNameInEnglish;
 	}
 
-	public String getShortNameInEnglish() {
-		return shortNameInEnglish;
+	public String getProductNameInOtherLanguage() {
+		return productNameInOtherLanguage;
 	}
 
-	public void setShortNameInEnglish(String shortNameInEnglish) {
-		this.shortNameInEnglish = shortNameInEnglish;
-	}
-
-	public String getShortNameInOtherLanguage() {
-		return shortNameInOtherLanguage;
-	}
-
-	public void setShortNameInOtherLanguage(String shortNameInOtherLanguage) {
-		this.shortNameInOtherLanguage = shortNameInOtherLanguage;
+	public void setProductNameInOtherLanguage(String productNameInOtherLanguage) {
+		this.productNameInOtherLanguage = productNameInOtherLanguage;
 	}
 
 	public Integer getInventoryOnHand() {

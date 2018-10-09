@@ -12,7 +12,7 @@
    <children>
       <VBox layoutX="14.0" layoutY="276.0" prefHeight="853.0" prefWidth="220.0" AnchorPane.bottomAnchor="227.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="btnLogo" mnemonicParsing="false" onAction="#showHome" prefHeight="100.0" prefWidth="220.0" style="-fx-background-color: #FFFFFF;" styleClass="flat-button" />
+            <Button fx:id="btnLogo" mnemonicParsing="false" onAction="#showDashboard" prefHeight="100.0" prefWidth="220.0" style="-fx-background-color: #FFFFFF;" styleClass="flat-button" />
             <Label prefHeight="50.0" prefWidth="220.0" />
             <Button mnemonicParsing="false" onAction="#showPrevious" prefHeight="50.0" prefWidth="220.0" text="Back">
                <styleClass>

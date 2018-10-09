@@ -39,13 +39,10 @@ public class ProductManageViewController extends Controller {
 	private TextField barcodeField;
 
 	@FXML
-	private TextField fullNameField;
+	private TextField productNameInEnglishField;
 
 	@FXML
-	private TextField shortNameInEnglishField;
-
-	@FXML
-	private TextField shortNameInOtherLanguageField;
+	private TextField productNameInOtherLanguageField;
 
 	@FXML
 	private TextField inventoryOnHandField;
@@ -100,9 +97,8 @@ public class ProductManageViewController extends Controller {
 		}
 
 		barcodeField.setText(product.getBarcode());
-		fullNameField.setText(product.getFullName());
-		shortNameInEnglishField.setText(product.getShortNameInEnglish());
-		shortNameInOtherLanguageField.setText(product.getShortNameInOtherLanguage());
+		productNameInEnglishField.setText(product.getProductNameInEnglish());
+		productNameInOtherLanguageField.setText(product.getProductNameInOtherLanguage());
 		inventoryOnHandField.setText(Objects.toString(product.getInventoryOnHand(), "0"));
 		safetyInventoryOnHandField.setText(Objects.toString(product.getSafetyInventoryOnHand(), "0"));
 		costAmountField.setText(Objects.toString(product.getCostAmount(), "0.00"));
@@ -125,9 +121,8 @@ public class ProductManageViewController extends Controller {
 		product.setDepartment(departmentChoiceBox.getSelectionModel().getSelectedItem());
 
 		product.setBarcode(barcodeField.getText());
-		product.setFullName(fullNameField.getText());
-		product.setShortNameInEnglish(shortNameInEnglishField.getText());
-		product.setShortNameInOtherLanguage(shortNameInOtherLanguageField.getText());
+		product.setProductNameInEnglish(productNameInEnglishField.getText());
+		product.setProductNameInOtherLanguage(productNameInOtherLanguageField.getText());
 		product.setInventoryOnHand(Integer.valueOf(inventoryOnHandField.getText()));
 		product.setSafetyInventoryOnHand(Integer.valueOf(safetyInventoryOnHandField.getText()));
 		product.setCostAmount(new BigDecimal(costAmountField.getText()));
@@ -135,12 +130,11 @@ public class ProductManageViewController extends Controller {
 
 		productService.save(product);
 
-		AppUtil.showPopupWindow("Product [" + product.getFullName() + "] has been saved", "");
+		AppUtil.showPopupWindow("Product [" + product.getProductNameInEnglish() + "] has been saved", "");
 
 		AppUtil.popCenterPaneStack();
 	}
 
-	// TODO: replace the close button with the global back button
 	@FXML
 	private void close() {
 		AppUtil.popCenterPaneStack();
@@ -151,14 +145,11 @@ public class ProductManageViewController extends Controller {
 		if (ValidateUtil.invalidLength(barcodeField, 50)) {
 			AppUtil.showPopupWindow("Barcode has too many characters", "");
 			return false;
-		} else if (ValidateUtil.blankTextOrInvalidLength(fullNameField, 50)) {
-			AppUtil.showPopupWindow("Full name is empty or has too many characters", "");
+		} else if (ValidateUtil.blankTextOrInvalidLength(productNameInEnglishField, 50)) {
+			AppUtil.showPopupWindow("Product name in English is empty or has too many characters", "");
 			return false;
-		} else if (ValidateUtil.blankTextOrInvalidLength(shortNameInEnglishField, 50)) {
-			AppUtil.showPopupWindow("Short name in English is empty or has too many characters", "");
-			return false;
-		} else if (ValidateUtil.blankTextOrInvalidLength(shortNameInOtherLanguageField, 50)) {
-			AppUtil.showPopupWindow("Short name in other language is empty or has too many characters", "");
+		} else if (ValidateUtil.blankTextOrInvalidLength(productNameInOtherLanguageField, 50)) {
+			AppUtil.showPopupWindow("Product name in other language is empty or has too many characters", "");
 			return false;
 		} else if (ValidateUtil.invalidInteger(inventoryOnHandField)) {
 			AppUtil.showPopupWindow("Inventory on hand is not a valid number", "");
