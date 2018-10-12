@@ -5,8 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.sellit.container.ApplicationContainer;
+import com.sellit.util.AppUtil;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 @SpringBootApplication
@@ -20,6 +22,7 @@ public class SellitApplication extends Application {
 		try {
 			launch(args);
 		} catch (Exception e) {
+			// TODO write to log file
 			e.printStackTrace();
 			System.exit(1);
 		}
@@ -45,6 +48,8 @@ public class SellitApplication extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
+		Thread.setDefaultUncaughtExceptionHandler(SellitApplication::handleError);
+
 		primaryStage.setTitle("Sellit");
 
 		applicationContainer = springContext.getBean(ApplicationContainer.class);
@@ -61,6 +66,20 @@ public class SellitApplication extends Application {
 
 	public static ApplicationContainer getApplicationContainer() {
 		return applicationContainer;
+	}
+
+	private static void handleError(Thread t, Throwable e) {
+
+		// TODO write to log file
+		e.printStackTrace();
+
+		if (Platform.isFxApplicationThread()) {
+			AppUtil.showPopupWindow("ERROR", e.toString());
+		} else {
+			AppUtil.showPopupWindow("ERROR", "An unexpected error occurred in " + t);
+		}
+
+		System.exit(1);
 	}
 
 }
