@@ -3,6 +3,7 @@ package com.sellit.util;
 import java.io.IOException;
 
 import com.sellit.SellitApplication;
+import com.sellit.container.ApplicationContainer;
 import com.sellit.container.PaneContainer;
 import com.sellit.controller.Controller;
 import com.sellit.controller.LoginController;
@@ -38,6 +39,10 @@ public class AppUtil {
 		return paneContainer;
 	}
 
+	public static void showPopupWindow(String title) {
+		showPopupWindow(title, "");
+	}
+
 	public static void showPopupWindow(String title, String message) {
 		showPopupWindow(SellitApplication.getApplicationContainer().getPrimaryStage(), title, message);
 	}
@@ -55,7 +60,7 @@ public class AppUtil {
 			dialogStage.setTitle("");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			Scene scene = new Scene(pane);
-			scene.getStylesheets().add("/css/bootstrap3.css");
+			scene.getStylesheets().add(ApplicationContainer.CSS_BOOTSTRAP3_CSS);
 			dialogStage.setScene(scene);
 
 			Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
@@ -86,7 +91,7 @@ public class AppUtil {
 			dialogStage.setTitle("");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			Scene scene = new Scene(pane);
-			scene.getStylesheets().add("/css/bootstrap3.css");
+			scene.getStylesheets().add(ApplicationContainer.CSS_BOOTSTRAP3_CSS);
 			dialogStage.setScene(scene);
 
 			Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();

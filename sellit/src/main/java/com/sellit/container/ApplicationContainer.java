@@ -19,7 +19,7 @@ import javafx.stage.StageStyle;
 @Component
 public class ApplicationContainer {
 
-	private static final String CSS_BOOTSTRAP3_CSS = "/css/bootstrap3.css";
+	public static final String CSS_BOOTSTRAP3_CSS = "/css/bootstrap3.css";
 
 	private Stage primaryStage;
 	private BorderPane rootLayout;
