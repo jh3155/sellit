@@ -8,6 +8,7 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sellit.SellitApplication;
 import com.sellit.constants.StatusConstants;
 import com.sellit.controller.Controller;
 import com.sellit.persistence.Department;
@@ -132,12 +133,12 @@ public class ProductManageViewController extends Controller {
 
 		AppUtil.showPopupWindow("Product [" + product.getProductNameInEnglish() + "] has been saved", "");
 
-		AppUtil.popCenterPaneStack();
+		SellitApplication.getApplicationContainer().popCenterPaneStack();
 	}
 
 	@FXML
 	private void close() {
-		AppUtil.popCenterPaneStack();
+		SellitApplication.getApplicationContainer().popCenterPaneStack();
 	}
 
 	private boolean validate() {

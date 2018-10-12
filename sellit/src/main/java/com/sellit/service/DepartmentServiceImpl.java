@@ -25,11 +25,11 @@ public class DepartmentServiceImpl implements DepartmentService {
 	public Department save(Department department) {
 
 		if (department.getCreatedBy() == null) {
-			department.setCreatedBy(SellitApplication.getLoggedInEmployee());
+			department.setCreatedBy(SellitApplication.getApplicationContainer().getLoggedInEmployee());
 			department.setCreatedDatetime(LocalDateTime.now());
 		}
 
-		department.setUpdatedBy(SellitApplication.getLoggedInEmployee());
+		department.setUpdatedBy(SellitApplication.getApplicationContainer().getLoggedInEmployee());
 		department.setUpdatedDatetime(LocalDateTime.now());
 
 		return departmentDao.save(department);

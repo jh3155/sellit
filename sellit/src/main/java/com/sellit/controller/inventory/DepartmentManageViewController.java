@@ -8,7 +8,9 @@ import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sellit.SellitApplication;
 import com.sellit.constants.StatusConstants;
+import com.sellit.controller.Controller;
 import com.sellit.persistence.Department;
 import com.sellit.persistence.Product;
 import com.sellit.service.DepartmentService;
@@ -21,7 +23,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
 @Component
-public class DepartmentManageViewController {
+public class DepartmentManageViewController extends Controller {
 
 	@Autowired
 	private DepartmentService departmentService;
@@ -72,7 +74,7 @@ public class DepartmentManageViewController {
 
 		AppUtil.showPopupWindow("Department [" + department.getDepartmentName() + "] has been saved", "");
 
-		AppUtil.popCenterPaneStack();
+		SellitApplication.getApplicationContainer().popCenterPaneStack();
 	}
 
 	private boolean validate() {
@@ -85,4 +87,8 @@ public class DepartmentManageViewController {
 		return true;
 	}
 
+	@Override
+	public void refresh() {
+
+	}
 }

@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import org.springframework.stereotype.Component;
 
+import com.sellit.SellitApplication;
+import com.sellit.container.PaneContainer;
 import com.sellit.controller.Controller;
 import com.sellit.util.AppUtil;
 
@@ -33,18 +35,16 @@ public class InventoryMainViewController extends Controller {
 
 	@FXML
 	private void showDepartmentList() throws IOException {
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/DepartmentListView.fxml");
-		Pane pane = fxmlLoader.load();
-
-		AppUtil.pushCenterPaneStack(pane, this);
+		PaneContainer paneContainer = AppUtil
+				.createPaneContainer("/com/sellit/controller/inventory/DepartmentListView.fxml", this);
+		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer);
 	}
 
 	@FXML
 	private void showProductList() throws IOException {
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/ProductListView.fxml");
-		Pane pane = fxmlLoader.load();
-
-		AppUtil.pushCenterPaneStack(pane, this);
+		PaneContainer paneContainer = AppUtil
+				.createPaneContainer("/com/sellit/controller/inventory/ProductListView.fxml", this);
+		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer);
 	}
 
 	@Override

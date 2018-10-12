@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sellit.SellitApplication;
+import com.sellit.container.PaneContainer;
 import com.sellit.persistence.Employee;
 import com.sellit.service.EmployeeService;
 import com.sellit.util.AppUtil;
@@ -136,7 +137,7 @@ public class LoginController extends Controller {
 			return;
 		}
 
-		SellitApplication.setLoggedInEmployee(employee);
+		SellitApplication.getApplicationContainer().setLoggedInEmployee(employee);
 
 		showDashboard();
 
@@ -145,10 +146,8 @@ public class LoginController extends Controller {
 	}
 
 	private void showDashboard() throws IOException {
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/Dashboard.fxml");
-		Pane pane = fxmlLoader.load();
-
-		AppUtil.pushCenterPaneStack(pane, this, true);
+		PaneContainer paneContainer = AppUtil.createPaneContainer("/com/sellit/controller/Dashboard.fxml", this);
+		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer);
 	}
 
 	public void setDialogStage(Stage dialogStage) {

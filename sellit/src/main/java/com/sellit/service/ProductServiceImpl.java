@@ -25,11 +25,11 @@ public class ProductServiceImpl implements ProductService {
 	public Product save(Product product) {
 
 		if (product.getCreatedBy() == null) {
-			product.setCreatedBy(SellitApplication.getLoggedInEmployee());
+			product.setCreatedBy(SellitApplication.getApplicationContainer().getLoggedInEmployee());
 			product.setCreatedDatetime(LocalDateTime.now());
 		}
 
-		product.setUpdatedBy(SellitApplication.getLoggedInEmployee());
+		product.setUpdatedBy(SellitApplication.getApplicationContainer().getLoggedInEmployee());
 		product.setUpdatedDatetime(LocalDateTime.now());
 
 		return productDao.save(product);

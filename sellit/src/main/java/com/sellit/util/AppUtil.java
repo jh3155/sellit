@@ -26,46 +26,20 @@ public class AppUtil {
 		return fxmlLoader;
 	}
 
-	public static void pushCenterPaneStack(Pane pane, Controller controller) {
+	public static PaneContainer createPaneContainer(String fxmlPath, Controller parentController) throws IOException {
+		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader(fxmlPath);
+		Pane pane = fxmlLoader.load();
+
 		PaneContainer paneContainer = new PaneContainer();
 		paneContainer.setPane(pane);
-		paneContainer.setParentController(controller);
-		pushCenterPaneStack(paneContainer);
-	}
+		paneContainer.setController(fxmlLoader.getController());
+		paneContainer.setParentController(parentController);
 
-	public static void pushCenterPaneStack(PaneContainer paneContainer) {
-		Pane pane = SellitApplication.getCenterPanes().push(paneContainer).getPane();
-		SellitApplication.getRootLayout().setCenter(pane);
-	}
-
-	public static void pushCenterPaneStack(Pane pane, Controller controller, boolean clearStackBeforePush) {
-		if (clearStackBeforePush) {
-			clearPaneStack();
-		}
-		pushCenterPaneStack(pane, controller);
-	}
-
-	public static void popCenterPaneStack() {
-
-		if (SellitApplication.getCenterPanes().size() == 1) {
-			return;
-		}
-
-		PaneContainer paneContainer = SellitApplication.getCenterPanes().pop();
-		paneContainer.getParentController().refresh();
-
-		PaneContainer prevPaneContainer = SellitApplication.getCenterPanes().peek();
-		Pane previousPane = prevPaneContainer.getPane();
-		SellitApplication.getRootLayout().setCenter(previousPane);
-	}
-
-	public static void clearPaneStack() {
-		SellitApplication.getCenterPanes().clear();
-		SellitApplication.getRootLayout().setCenter(null);
+		return paneContainer;
 	}
 
 	public static void showPopupWindow(String title, String message) {
-		showPopupWindow(SellitApplication.getPrimaryStage(), title, message);
+		showPopupWindow(SellitApplication.getApplicationContainer().getPrimaryStage(), title, message);
 	}
 
 	public static void showPopupWindow(Stage ownerStage, String title, String message) {
@@ -100,16 +74,15 @@ public class AppUtil {
 	public static void showLoginWindow() {
 
 		try {
-			clearPaneStack();
-			SellitApplication.setLoggedInEmployee(null);
+			SellitApplication.getApplicationContainer().clearCenterPaneStack();
+			SellitApplication.getApplicationContainer().setLoggedInEmployee(null);
 
 			FXMLLoader fxmlLoader = createFxmlLoader("/com/sellit/controller/LoginView.fxml");
 			Pane pane = fxmlLoader.load();
 			LoginController controller = fxmlLoader.getController();
 
-			// TODO: need to show in center
 			Stage dialogStage = new Stage();
-			dialogStage.initOwner(SellitApplication.getPrimaryStage());
+			dialogStage.initOwner(SellitApplication.getApplicationContainer().getPrimaryStage());
 			dialogStage.setTitle("");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			Scene scene = new Scene(pane);

@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sellit.SellitApplication;
 import com.sellit.constants.StatusConstants;
+import com.sellit.container.PaneContainer;
 import com.sellit.controller.Controller;
 import com.sellit.controller.inventory.DepartmentManageViewController;
 import com.sellit.persistence.Department;
@@ -98,12 +100,10 @@ public class EmployeeListViewController extends Controller {
 	private void addNewEmployee() throws IOException {
 		Employee employee = new Employee();
 
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/employee/EmployeeManageView.fxml");
-		Pane pane = fxmlLoader.load();
-		EmployeeManageViewController controller = fxmlLoader.getController();
-		controller.setEmployee(employee);
-
-		AppUtil.pushCenterPaneStack(pane, this);
+		PaneContainer paneContainer = AppUtil
+				.createPaneContainer("/com/sellit/controller/employee/EmployeeManageView.fxml", this);
+		((EmployeeManageViewController) paneContainer.getController()).setEmployee(employee);
+		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer);
 	}
 
 	@FXML
@@ -115,14 +115,12 @@ public class EmployeeListViewController extends Controller {
 			return;
 		}
 
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/employee/EmployeeManageView.fxml");
-		Pane pane = fxmlLoader.load();
-		EmployeeManageViewController controller = fxmlLoader.getController();
-
 		Employee employee = employeeService.findById(selectedEmployee.getEmployeeId());
-		controller.setEmployee(employee);
 
-		AppUtil.pushCenterPaneStack(pane, this);
+		PaneContainer paneContainer = AppUtil
+				.createPaneContainer("/com/sellit/controller/employee/EmployeeManageView.fxml", this);
+		((EmployeeManageViewController) paneContainer.getController()).setEmployee(employee);
+		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer);
 	}
 
 	@Override

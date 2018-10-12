@@ -37,11 +37,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employee save(Employee employee) {
 
 		if (employee.getCreatedBy() == null) {
-			employee.setCreatedBy(SellitApplication.getLoggedInEmployee());
+			employee.setCreatedBy(SellitApplication.getApplicationContainer().getLoggedInEmployee());
 			employee.setCreatedDatetime(LocalDateTime.now());
 		}
 
-		employee.setUpdatedBy(SellitApplication.getLoggedInEmployee());
+		employee.setUpdatedBy(SellitApplication.getApplicationContainer().getLoggedInEmployee());
 		employee.setUpdatedDatetime(LocalDateTime.now());
 
 		return employeeDao.save(employee);

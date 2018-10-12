@@ -8,7 +8,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sellit.SellitApplication;
 import com.sellit.constants.InventoryConstants;
+import com.sellit.container.PaneContainer;
 import com.sellit.controller.Controller;
 import com.sellit.persistence.Employee;
 import com.sellit.persistence.Product;
@@ -132,12 +134,10 @@ public class ProductListViewController extends Controller {
 	private void addNewProduct() throws IOException {
 		Product product = new Product();
 
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/ProductManageView.fxml");
-		Pane pane = fxmlLoader.load();
-		ProductManageViewController controller = fxmlLoader.getController();
-		controller.setProduct(product);
-
-		AppUtil.pushCenterPaneStack(pane, this);
+		PaneContainer paneContainer = AppUtil
+				.createPaneContainer("/com/sellit/controller/inventory/ProductManageView.fxml", this);
+		((ProductManageViewController) paneContainer.getController()).setProduct(product);
+		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer);
 	}
 
 	@FXML
@@ -149,12 +149,10 @@ public class ProductListViewController extends Controller {
 			return;
 		}
 
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/ProductManageView.fxml");
-		Pane pane = fxmlLoader.load();
-		ProductManageViewController controller = fxmlLoader.getController();
-		controller.setProduct(product);
-
-		AppUtil.pushCenterPaneStack(pane, this);
+		PaneContainer paneContainer = AppUtil
+				.createPaneContainer("/com/sellit/controller/inventory/ProductManageView.fxml", this);
+		((ProductManageViewController) paneContainer.getController()).setProduct(product);
+		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer);
 	}
 
 	@Override

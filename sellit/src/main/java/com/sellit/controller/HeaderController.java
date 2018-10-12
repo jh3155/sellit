@@ -40,7 +40,6 @@ public class HeaderController {
 
 	@FXML
 	private void showPrevious() throws IOException {
-		AppUtil.popCenterPaneStack();
 	}
 
 }

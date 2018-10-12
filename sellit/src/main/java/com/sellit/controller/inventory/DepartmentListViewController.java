@@ -7,8 +7,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sellit.SellitApplication;
 import com.sellit.constants.StatusConstants;
+import com.sellit.container.PaneContainer;
 import com.sellit.controller.Controller;
+import com.sellit.controller.employee.EmployeeManageViewController;
 import com.sellit.persistence.Department;
 import com.sellit.persistence.Product;
 import com.sellit.service.DepartmentService;
@@ -80,12 +83,11 @@ public class DepartmentListViewController extends Controller {
 	private void addNewDepartment() throws IOException {
 		Department department = new Department();
 
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/DepartmentManageView.fxml");
-		Pane pane = fxmlLoader.load();
-		DepartmentManageViewController controller = fxmlLoader.getController();
-		controller.setDepartment(department);
-
-		AppUtil.pushCenterPaneStack(pane, this);
+		PaneContainer paneContainer = AppUtil
+				.createPaneContainer("/com/sellit/controller/inventory/DepartmentManageView.fxml", this);
+		((DepartmentManageViewController) paneContainer.getController()).setDepartment(department);
+		paneContainer.setParentController(this);
+		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer);
 	}
 
 	@FXML
@@ -93,19 +95,18 @@ public class DepartmentListViewController extends Controller {
 		Department selectedDepartment = departmentTable.getSelectionModel().getSelectedItem();
 
 		if (selectedDepartment == null) {
-			AppUtil.showPopupWindow("Select a product to modify", "");
+			AppUtil.showPopupWindow("Select a department to modify", "");
 			return;
 		}
 
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/DepartmentManageView.fxml");
-		Pane pane = fxmlLoader.load();
-		DepartmentManageViewController controller = fxmlLoader.getController();
-
 		// fetch the record again to make sure it gets the latest version
 		Department department = departmentService.findById(selectedDepartment.getDepartmentId());
-		controller.setDepartment(department);
 
-		AppUtil.pushCenterPaneStack(pane, this);
+		PaneContainer paneContainer = AppUtil
+				.createPaneContainer("/com/sellit/controller/inventory/DepartmentManageView.fxml", this);
+		((DepartmentManageViewController) paneContainer.getController()).setDepartment(department);
+		paneContainer.setParentController(this);
+		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer);
 	}
 
 	@Override

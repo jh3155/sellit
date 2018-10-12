@@ -6,6 +6,7 @@ import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sellit.SellitApplication;
 import com.sellit.constants.EmployeeConstants;
 import com.sellit.constants.StatusConstants;
 import com.sellit.controller.Controller;
@@ -94,7 +95,7 @@ public class EmployeeManageViewController extends Controller {
 
 		AppUtil.showPopupWindow("Employee [" + employee.getEmployeeName() + "] has been saved", "");
 
-		AppUtil.popCenterPaneStack();
+		SellitApplication.getApplicationContainer().popCenterPaneStack();
 	}
 
 	private boolean validate() {

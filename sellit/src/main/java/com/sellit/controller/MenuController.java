@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.springframework.stereotype.Component;
 
 import com.sellit.SellitApplication;
+import com.sellit.container.PaneContainer;
 import com.sellit.util.AppUtil;
 
 import javafx.application.Platform;
@@ -53,7 +54,7 @@ public class MenuController extends Controller {
 
 	@FXML
 	private void showPrevious() throws IOException {
-		AppUtil.popCenterPaneStack();
+		SellitApplication.getApplicationContainer().popCenterPaneStack();
 	}
 
 	@FXML
@@ -64,29 +65,27 @@ public class MenuController extends Controller {
 	@FXML
 	private void showInventory() throws IOException {
 
-		if (SellitApplication.getLoggedInEmployee() == null) {
+		if (SellitApplication.getApplicationContainer().getLoggedInEmployee() == null) {
 			AppUtil.showLoginWindow();
 			return;
 		}
 
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/inventory/InventoryMainView.fxml");
-		Pane productDashboard = fxmlLoader.load();
-
-		AppUtil.pushCenterPaneStack(productDashboard, this, true);
+		PaneContainer paneContainer = AppUtil
+				.createPaneContainer("/com/sellit/controller/inventory/InventoryMainView.fxml", this);
+		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer, true);
 	}
 
 	@FXML
 	private void showEmployee() throws IOException {
 
-		if (SellitApplication.getLoggedInEmployee() == null) {
+		if (SellitApplication.getApplicationContainer().getLoggedInEmployee() == null) {
 			AppUtil.showLoginWindow();
 			return;
 		}
 
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/employee/EmployeeListView.fxml");
-		Pane pane = fxmlLoader.load();
-
-		AppUtil.pushCenterPaneStack(pane, this, true);
+		PaneContainer paneContainer = AppUtil
+				.createPaneContainer("/com/sellit/controller/employee/EmployeeListView.fxml", this);
+		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer, true);
 	}
 
 	@FXML
@@ -106,10 +105,8 @@ public class MenuController extends Controller {
 
 	@FXML
 	private void showDashboard() throws IOException {
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader("/com/sellit/controller/Dashboard.fxml");
-		Pane pane = fxmlLoader.load();
-
-		AppUtil.pushCenterPaneStack(pane, this, true);
+		PaneContainer paneContainer = AppUtil.createPaneContainer("/com/sellit/controller/Dashboard.fxml", this);
+		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer, true);
 	}
 
 	@FXML

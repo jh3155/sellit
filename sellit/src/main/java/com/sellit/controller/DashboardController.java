@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
 @Component
-public class DashboardController {
+public class DashboardController extends Controller {
 
 	/**
 	 * The constructor. The constructor is called before the initialize() method.
@@ -33,6 +33,11 @@ public class DashboardController {
 	@FXML
 	private void logout() throws IOException {
 		AppUtil.showLoginWindow();
+	}
+
+	@Override
+	public void refresh() {
+
 	}
 
 }
