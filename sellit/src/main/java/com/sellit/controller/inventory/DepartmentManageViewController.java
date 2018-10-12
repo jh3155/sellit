@@ -1,10 +1,7 @@
 package com.sellit.controller.inventory;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.Objects;
 
-import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,9 +9,7 @@ import com.sellit.SellitApplication;
 import com.sellit.constants.StatusConstants;
 import com.sellit.controller.Controller;
 import com.sellit.persistence.Department;
-import com.sellit.persistence.Product;
 import com.sellit.service.DepartmentService;
-import com.sellit.service.ProductService;
 import com.sellit.util.AppUtil;
 import com.sellit.util.ValidateUtil;
 

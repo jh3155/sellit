@@ -39,7 +39,7 @@ public class ApplicationContainer {
 
 	/**
 	 * Initializes the root layout.
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	public void initializeRootLayout() throws IOException {

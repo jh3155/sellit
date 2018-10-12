@@ -4,12 +4,8 @@ import java.io.IOException;
 
 import org.springframework.stereotype.Component;
 
-import com.sellit.util.AppUtil;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
 
 @Component
 public class HeaderController {

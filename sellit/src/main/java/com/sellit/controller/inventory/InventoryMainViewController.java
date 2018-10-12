@@ -10,8 +10,6 @@ import com.sellit.controller.Controller;
 import com.sellit.util.AppUtil;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.Pane;
 
 @Component
 public class InventoryMainViewController extends Controller {
@@ -25,7 +23,7 @@ public class InventoryMainViewController extends Controller {
 	/**
 	 * Initializes the controller class. This method is automatically called after
 	 * the fxml file has been loaded.
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	@FXML

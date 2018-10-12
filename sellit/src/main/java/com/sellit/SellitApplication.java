@@ -1,29 +1,13 @@
 package com.sellit;
 
-import java.io.IOException;
-import java.util.Stack;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.sellit.container.ApplicationContainer;
-import com.sellit.container.PaneContainer;
-import com.sellit.persistence.Employee;
-import com.sellit.service.EmployeeService;
-import com.sellit.util.AppUtil;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 @SpringBootApplication
 public class SellitApplication extends Application {

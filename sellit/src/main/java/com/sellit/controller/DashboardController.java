@@ -7,8 +7,6 @@ import org.springframework.stereotype.Component;
 import com.sellit.util.AppUtil;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.Pane;
 
 @Component
 public class DashboardController extends Controller {
@@ -22,7 +20,7 @@ public class DashboardController extends Controller {
 	/**
 	 * Initializes the controller class. This method is automatically called after
 	 * the fxml file has been loaded.
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	@FXML

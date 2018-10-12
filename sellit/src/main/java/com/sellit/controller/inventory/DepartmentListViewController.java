@@ -3,7 +3,6 @@ package com.sellit.controller.inventory;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,9 +10,7 @@ import com.sellit.SellitApplication;
 import com.sellit.constants.StatusConstants;
 import com.sellit.container.PaneContainer;
 import com.sellit.controller.Controller;
-import com.sellit.controller.employee.EmployeeManageViewController;
 import com.sellit.persistence.Department;
-import com.sellit.persistence.Product;
 import com.sellit.service.DepartmentService;
 import com.sellit.util.AppUtil;
 
@@ -22,11 +19,9 @@ import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 
 @Component
 public class DepartmentListViewController extends Controller {

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +11,6 @@ import com.sellit.SellitApplication;
 import com.sellit.constants.InventoryConstants;
 import com.sellit.container.PaneContainer;
 import com.sellit.controller.Controller;
-import com.sellit.persistence.Employee;
 import com.sellit.persistence.Product;
 import com.sellit.service.ProductService;
 import com.sellit.util.AppUtil;
@@ -23,12 +21,10 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 
 @Component
 public class ProductListViewController extends Controller {

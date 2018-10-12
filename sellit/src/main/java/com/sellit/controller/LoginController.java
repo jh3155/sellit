@@ -14,9 +14,7 @@ import com.sellit.util.AppUtil;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 @Component
@@ -51,7 +49,7 @@ public class LoginController extends Controller {
 	/**
 	 * Initializes the controller class. This method is automatically called after
 	 * the fxml file has been loaded.
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	@FXML

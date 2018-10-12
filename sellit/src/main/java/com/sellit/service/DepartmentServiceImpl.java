@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.sellit.SellitApplication;
 import com.sellit.dao.DepartmentDao;
 import com.sellit.persistence.Department;
-import com.sellit.persistence.Department;
 
 @Service
 @Transactional

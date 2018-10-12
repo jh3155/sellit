@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.sellit.SellitApplication;
 import com.sellit.dao.ProductDao;
-import com.sellit.persistence.Employee;
 import com.sellit.persistence.Product;
 
 @Service

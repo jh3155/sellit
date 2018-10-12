@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.sellit.SellitApplication;
 import com.sellit.constants.StatusConstants;
 import com.sellit.dao.EmployeeDao;
-import com.sellit.persistence.Department;
 import com.sellit.persistence.Employee;
 
 @Service

@@ -10,8 +10,6 @@ import com.sellit.SellitApplication;
 import com.sellit.constants.StatusConstants;
 import com.sellit.container.PaneContainer;
 import com.sellit.controller.Controller;
-import com.sellit.controller.inventory.DepartmentManageViewController;
-import com.sellit.persistence.Department;
 import com.sellit.persistence.Employee;
 import com.sellit.service.EmployeeService;
 import com.sellit.util.AppUtil;
@@ -21,11 +19,9 @@ import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 
 @Component
 public class EmployeeListViewController extends Controller {
@@ -63,7 +59,7 @@ public class EmployeeListViewController extends Controller {
 	/**
 	 * Initializes the controller class. This method is automatically called after
 	 * the fxml file has been loaded.
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	@FXML
