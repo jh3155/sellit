@@ -29,8 +29,7 @@
                       <TableColumn fx:id="barcodeColumn" editable="false" prefWidth="150.0" text="Barcode" />
                         <TableColumn fx:id="productNameColumn" editable="false" prefWidth="250.0" text="Product Name" />
                         <TableColumn fx:id="onHandColumn" editable="false" prefWidth="100.0" text="On Hand" />
-                        <TableColumn fx:id="costAmountColumn" editable="false" prefWidth="100.0" text="Cost Amount" />
-                        <TableColumn fx:id="salesAmountColumn" editable="false" prefWidth="100.0" text="Sales Amount" />
+                        <TableColumn fx:id="unitPriceColumn" editable="false" prefWidth="100.0" text="Sales Amount" />
                     </columns>
                   </TableView>
                </children>

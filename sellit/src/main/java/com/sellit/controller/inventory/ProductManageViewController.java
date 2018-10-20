@@ -19,6 +19,7 @@ import com.sellit.util.AppUtil;
 import com.sellit.util.ValidateUtil;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
@@ -39,10 +40,10 @@ public class ProductManageViewController extends Controller {
 	private TextField barcodeField;
 
 	@FXML
-	private TextField productNameInEnglishField;
+	private TextField productNameField;
 
 	@FXML
-	private TextField productNameInOtherLanguageField;
+	private TextField productMenuNameField;
 
 	@FXML
 	private TextField inventoryOnHandField;
@@ -51,10 +52,16 @@ public class ProductManageViewController extends Controller {
 	private TextField safetyInventoryOnHandField;
 
 	@FXML
-	private TextField costAmountField;
+	private TextField unitPriceField;
 
 	@FXML
-	private TextField salesAmountField;
+	private CheckBox taxable1Checkbox;
+
+	@FXML
+	private CheckBox taxable2Checkbox;
+
+	@FXML
+	private CheckBox taxable3Checkbox;
 
 	private Product product;
 
@@ -97,12 +104,14 @@ public class ProductManageViewController extends Controller {
 		}
 
 		barcodeField.setText(product.getBarcode());
-		productNameInEnglishField.setText(product.getProductNameInEnglish());
-		productNameInOtherLanguageField.setText(product.getProductNameInOtherLanguage());
+		productNameField.setText(product.getProductName());
+		productMenuNameField.setText(product.getProductMenuName());
 		inventoryOnHandField.setText(Objects.toString(product.getInventoryOnHand(), "0"));
 		safetyInventoryOnHandField.setText(Objects.toString(product.getSafetyInventoryOnHand(), "0"));
-		costAmountField.setText(Objects.toString(product.getCostAmount(), "0.00"));
-		salesAmountField.setText(Objects.toString(product.getSalesAmount(), "0.00"));
+		unitPriceField.setText(Objects.toString(product.getUnitPrice(), "0.00"));
+		taxable1Checkbox.setSelected(product.getTaxable1() == null ? Boolean.FALSE : product.getTaxable1());
+		taxable2Checkbox.setSelected(product.getTaxable2() == null ? Boolean.FALSE : product.getTaxable2());
+		taxable3Checkbox.setSelected(product.getTaxable3() == null ? Boolean.FALSE : product.getTaxable3());
 	}
 
 	public void setProduct(Product product) {
@@ -121,16 +130,18 @@ public class ProductManageViewController extends Controller {
 		product.setDepartment(departmentChoiceBox.getSelectionModel().getSelectedItem());
 
 		product.setBarcode(barcodeField.getText());
-		product.setProductNameInEnglish(productNameInEnglishField.getText());
-		product.setProductNameInOtherLanguage(productNameInOtherLanguageField.getText());
+		product.setProductName(productNameField.getText());
+		product.setProductMenuName(productMenuNameField.getText());
 		product.setInventoryOnHand(Integer.valueOf(inventoryOnHandField.getText()));
 		product.setSafetyInventoryOnHand(Integer.valueOf(safetyInventoryOnHandField.getText()));
-		product.setCostAmount(new BigDecimal(costAmountField.getText()));
-		product.setSalesAmount(new BigDecimal(salesAmountField.getText()));
+		product.setUnitPrice(new BigDecimal(unitPriceField.getText()));
+		product.setTaxable1(taxable1Checkbox.isSelected());
+		product.setTaxable2(taxable2Checkbox.isSelected());
+		product.setTaxable3(taxable3Checkbox.isSelected());
 
 		productService.save(product);
 
-		AppUtil.showPopupWindow("Product [" + product.getProductNameInEnglish() + "] has been saved", "");
+		AppUtil.showPopupWindow("Product [" + product.getProductName() + "] has been saved", "");
 
 		SellitApplication.getApplicationContainer().popCenterPaneStack();
 	}
@@ -145,11 +156,11 @@ public class ProductManageViewController extends Controller {
 		if (ValidateUtil.invalidLength(barcodeField, 50)) {
 			AppUtil.showPopupWindow("Barcode has too many characters", "");
 			return false;
-		} else if (ValidateUtil.blankTextOrInvalidLength(productNameInEnglishField, 50)) {
-			AppUtil.showPopupWindow("Product name in English is empty or has too many characters", "");
+		} else if (ValidateUtil.blankTextOrInvalidLength(productNameField, 50)) {
+			AppUtil.showPopupWindow("Product name is empty or has too many characters", "");
 			return false;
-		} else if (ValidateUtil.blankTextOrInvalidLength(productNameInOtherLanguageField, 50)) {
-			AppUtil.showPopupWindow("Product name in other language is empty or has too many characters", "");
+		} else if (ValidateUtil.blankTextOrInvalidLength(productMenuNameField, 50)) {
+			AppUtil.showPopupWindow("Product menu name is empty or has too many characters", "");
 			return false;
 		} else if (ValidateUtil.invalidInteger(inventoryOnHandField)) {
 			AppUtil.showPopupWindow("Inventory on hand is not a valid number", "");
@@ -157,11 +168,8 @@ public class ProductManageViewController extends Controller {
 		} else if (ValidateUtil.invalidInteger(safetyInventoryOnHandField)) {
 			AppUtil.showPopupWindow("Safety inventory on hand is not a valid number", "");
 			return false;
-		} else if (ValidateUtil.invalidBigDecimal(costAmountField)) {
-			AppUtil.showPopupWindow("Cost amount is not a valid decimal number", "");
-			return false;
-		} else if (ValidateUtil.invalidBigDecimal(salesAmountField)) {
-			AppUtil.showPopupWindow("Sales amount is not a valid decimal number", "");
+		} else if (ValidateUtil.invalidBigDecimal(unitPriceField)) {
+			AppUtil.showPopupWindow("Unit price is not a valid decimal number", "");
 			return false;
 		} else if (departmentChoiceBox.getSelectionModel().getSelectedItem() == null) {
 			AppUtil.showPopupWindow("Invalid department", "");

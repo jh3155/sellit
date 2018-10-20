@@ -1,9 +1,7 @@
 package com.sellit.persistence;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,9 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "PRODUCT")
-public class Product {
+public class Product extends BaseTable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,11 +30,11 @@ public class Product {
 	@Column(name = "BARCODE")
 	private String barcode;
 
-	@Column(name = "PRODUCT_NAME_ENG")
-	private String productNameInEnglish;
+	@Column(name = "PRODUCT_NAME")
+	private String productName;
 
-	@Column(name = "PRODUCT_NAME_OTHER")
-	private String productNameInOtherLanguage;
+	@Column(name = "PRODUCT_MENU_NAME")
+	private String productMenuName;
 
 	@Column(name = "INVENTORY_ON_HAND")
 	private Integer inventoryOnHand;
@@ -42,25 +42,20 @@ public class Product {
 	@Column(name = "SAFETY_INVENTORY_ON_HAND")
 	private Integer safetyInventoryOnHand;
 
-	@Column(name = "COST_AMT")
-	private BigDecimal costAmount;
+	@Column(name = "UNIT_PRICE")
+	private BigDecimal unitPrice;
 
-	@Column(name = "SALES_AMT")
-	private BigDecimal salesAmount;
+	@Column(name = "TAXABLE1")
+	@Type(type = "yes_no")
+	private Boolean taxable1;
 
-	@ManyToOne(cascade = CascadeType.DETACH)
-	@JoinColumn(name = "CREATED_BY", referencedColumnName = "EMPLOYEE_ID")
-	private Employee createdBy;
+	@Column(name = "TAXABLE2")
+	@Type(type = "yes_no")
+	private Boolean taxable2;
 
-	@Column(name = "CREATED_DTM")
-	private LocalDateTime createdDatetime;
-
-	@ManyToOne(cascade = CascadeType.DETACH)
-	@JoinColumn(name = "UPDATED_BY", referencedColumnName = "EMPLOYEE_ID")
-	private Employee updatedBy;
-
-	@Column(name = "UPDATED_DTM")
-	private LocalDateTime updatedDatetime;
+	@Column(name = "TAXABLE3")
+	@Type(type = "yes_no")
+	private Boolean taxable3;
 
 	public Long getProductId() {
 		return productId;
@@ -86,20 +81,20 @@ public class Product {
 		this.barcode = barcode;
 	}
 
-	public String getProductNameInEnglish() {
-		return productNameInEnglish;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setProductNameInEnglish(String productNameInEnglish) {
-		this.productNameInEnglish = productNameInEnglish;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
-	public String getProductNameInOtherLanguage() {
-		return productNameInOtherLanguage;
+	public String getProductMenuName() {
+		return productMenuName;
 	}
 
-	public void setProductNameInOtherLanguage(String productNameInOtherLanguage) {
-		this.productNameInOtherLanguage = productNameInOtherLanguage;
+	public void setProductMenuName(String productMenuName) {
+		this.productMenuName = productMenuName;
 	}
 
 	public Integer getInventoryOnHand() {
@@ -118,52 +113,36 @@ public class Product {
 		this.safetyInventoryOnHand = safetyInventoryOnHand;
 	}
 
-	public BigDecimal getCostAmount() {
-		return costAmount;
+	public BigDecimal getUnitPrice() {
+		return unitPrice;
 	}
 
-	public void setCostAmount(BigDecimal costAmount) {
-		this.costAmount = costAmount;
+	public void setUnitPrice(BigDecimal unitPrice) {
+		this.unitPrice = unitPrice;
 	}
 
-	public BigDecimal getSalesAmount() {
-		return salesAmount;
+	public Boolean getTaxable1() {
+		return taxable1;
 	}
 
-	public void setSalesAmount(BigDecimal salesAmount) {
-		this.salesAmount = salesAmount;
+	public void setTaxable1(Boolean taxable1) {
+		this.taxable1 = taxable1;
 	}
 
-	public Employee getCreatedBy() {
-		return createdBy;
+	public Boolean getTaxable2() {
+		return taxable2;
 	}
 
-	public void setCreatedBy(Employee createdBy) {
-		this.createdBy = createdBy;
+	public void setTaxable2(Boolean taxable2) {
+		this.taxable2 = taxable2;
 	}
 
-	public LocalDateTime getCreatedDatetime() {
-		return createdDatetime;
+	public Boolean getTaxable3() {
+		return taxable3;
 	}
 
-	public void setCreatedDatetime(LocalDateTime createdDatetime) {
-		this.createdDatetime = createdDatetime;
-	}
-
-	public Employee getUpdatedBy() {
-		return updatedBy;
-	}
-
-	public void setUpdatedBy(Employee updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-
-	public LocalDateTime getUpdatedDatetime() {
-		return updatedDatetime;
-	}
-
-	public void setUpdatedDatetime(LocalDateTime updatedDatetime) {
-		this.updatedDatetime = updatedDatetime;
+	public void setTaxable3(Boolean taxable3) {
+		this.taxable3 = taxable3;
 	}
 
 }

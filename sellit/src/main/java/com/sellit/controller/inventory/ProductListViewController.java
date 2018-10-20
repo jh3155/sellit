@@ -54,10 +54,7 @@ public class ProductListViewController extends Controller {
 	private TableColumn<Product, Integer> onHandColumn;
 
 	@FXML
-	private TableColumn<Product, BigDecimal> costAmountColumn;
-
-	@FXML
-	private TableColumn<Product, BigDecimal> salesAmountColumn;
+	private TableColumn<Product, BigDecimal> unitPriceColumn;
 
 	@FXML
 	private TextField searchField;
@@ -83,14 +80,12 @@ public class ProductListViewController extends Controller {
 		departmentColumn.setCellValueFactory(
 				cellData -> new SimpleStringProperty(cellData.getValue().getDepartment().getDepartmentName()));
 		barcodeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getBarcode()));
-		productNameColumn.setCellValueFactory(
-				cellData -> new SimpleStringProperty(cellData.getValue().getProductNameInEnglish()));
+		productNameColumn
+				.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProductName()));
 		onHandColumn.setCellValueFactory(
 				cellData -> new SimpleIntegerProperty(cellData.getValue().getInventoryOnHand()).asObject());
-		costAmountColumn.setCellValueFactory(
-				cellData -> new SimpleObjectProperty<BigDecimal>(cellData.getValue().getCostAmount()));
-		salesAmountColumn.setCellValueFactory(
-				cellData -> new SimpleObjectProperty<BigDecimal>(cellData.getValue().getSalesAmount()));
+		unitPriceColumn.setCellValueFactory(
+				cellData -> new SimpleObjectProperty<BigDecimal>(cellData.getValue().getUnitPrice()));
 
 		productTable.setItems(null);
 	}
@@ -111,7 +106,7 @@ public class ProductListViewController extends Controller {
 	@FXML
 	private void searchProductName() {
 
-		List<Product> products = productService.findByProductNameInEnglishContaining(searchField.getText());
+		List<Product> products = productService.findByProductNameContaining(searchField.getText());
 		productTable.setItems(FXCollections.observableArrayList(products));
 
 		searchField.requestFocus();

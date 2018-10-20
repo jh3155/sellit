@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -16,20 +17,24 @@
                   <Label layoutX="62.0" layoutY="98.0" text="Barcode" />
                   <TextField fx:id="barcodeField" layoutX="239.0" layoutY="91.0" />
                   <Button layoutX="290.0" layoutY="456.0" mnemonicParsing="false" onAction="#save" prefHeight="30.0" prefWidth="100.0" styleClass="success" text="Save" />
-                  <Label layoutX="62.0" layoutY="178.0" text="Product name in other langauge" />
-                  <Label layoutX="62.0" layoutY="138.0" text="Product name in English" />
-                  <TextField fx:id="productNameInEnglishField" layoutX="239.0" layoutY="131.0" />
-                  <TextField fx:id="productNameInOtherLanguageField" layoutX="239.0" layoutY="171.0" />
+                  <Label layoutX="62.0" layoutY="178.0" text="Product menu name" />
+                  <Label layoutX="62.0" layoutY="138.0" text="Product name" />
+                  <TextField fx:id="productNameField" layoutX="239.0" layoutY="131.0" />
+                  <TextField fx:id="productMenuNameField" layoutX="239.0" layoutY="171.0" />
                   <Label layoutX="62.0" layoutY="258.0" text="Safety inventory on hand" />
                   <Label layoutX="62.0" layoutY="218.0" text="Inventory on hand" />
                   <TextField fx:id="inventoryOnHandField" layoutX="239.0" layoutY="211.0" />
                   <TextField fx:id="safetyInventoryOnHandField" layoutX="239.0" layoutY="251.0" />
-                  <Label layoutX="62.0" layoutY="338.0" text="Sales amount" />
-                  <Label layoutX="62.0" layoutY="298.0" text="Cost amount" />
-                  <TextField fx:id="costAmountField" layoutX="239.0" layoutY="291.0" />
-                  <TextField fx:id="salesAmountField" layoutX="239.0" layoutY="331.0" />
+                  <Label layoutX="62.0" layoutY="338.0" text="Taxable 1" />
+                  <Label layoutX="62.0" layoutY="298.0" text="Unit price" />
+                  <TextField fx:id="unitPriceField" layoutX="239.0" layoutY="291.0" />
                   <ChoiceBox fx:id="departmentChoiceBox" layoutX="239.0" layoutY="51.0" prefWidth="150.0" />
                   <Label layoutX="62.0" layoutY="58.0" text="Department" />
+                  <CheckBox fx:id="taxable1Checkbox" layoutX="239.0" layoutY="334.0" mnemonicParsing="false" />
+                  <Label layoutX="62.0" layoutY="364.0" text="Taxable 2" />
+                  <CheckBox fx:id="taxable2Checkbox" layoutX="239.0" layoutY="360.0" mnemonicParsing="false" />
+                  <Label layoutX="62.0" layoutY="390.0" text="Taxable 3" />
+                  <CheckBox fx:id="taxable3Checkbox" layoutX="239.0" layoutY="386.0" mnemonicParsing="false" />
                </children>
             </AnchorPane>
         </content>

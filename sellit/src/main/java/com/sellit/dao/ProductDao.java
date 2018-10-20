@@ -10,6 +10,6 @@ public interface ProductDao extends JpaRepository<Product, Long> {
 
 	List<Product> findByBarcode(String barcode);
 
-	List<Product> findByProductNameInEnglishContaining(String productName);
+	List<Product> findByProductNameContaining(String productName);
 
 }
