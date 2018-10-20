@@ -14,7 +14,7 @@ import com.sellit.util.AppUtil;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 
 @Component
@@ -36,7 +36,7 @@ public class LoginController extends Controller {
 	private EmployeeService employeeService;
 
 	@FXML
-	private TextField pinField;
+	private PasswordField pinField;
 
 	private Stage dialogStage;
 
