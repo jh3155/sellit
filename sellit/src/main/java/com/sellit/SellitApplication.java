@@ -40,6 +40,7 @@ public class SellitApplication extends Application {
 		springContext = SpringApplication.run(SellitApplication.class);
 	}
 
+
 	/***
 	 * The main entry point for all JavaFX applications. The start method is called
 	 * after the init method has returned, and after the system is ready for the

@@ -1,7 +1,6 @@
 package com.sellit.persistence;
 
-import java.math.BigDecimal;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,8 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Type;
-
 @Entity
 @Table(name = "PRODUCT")
 public class Product extends BaseEntity {
@@ -23,7 +20,7 @@ public class Product extends BaseEntity {
 	@Column(name = "PRODUCT_ID")
 	private Long productId;
 
-	@ManyToOne(targetEntity = Department.class, fetch = FetchType.EAGER)
+	@ManyToOne(targetEntity = Department.class, fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
 	@JoinColumn(name = "DEPARTMENT_ID", referencedColumnName = "DEPARTMENT_ID")
 	private Department department;
 
@@ -33,8 +30,8 @@ public class Product extends BaseEntity {
 	@Column(name = "PRODUCT_NAME")
 	private String productName;
 
-	@Column(name = "SALES_AMT")
-	private Double salesAmount;
+	@Column(name = "UNIT_PRICE")
+	private Double unitPrice;
 
 	@Column(name = "TAXABLE_1_FLG")
 	private Boolean taxable1Flag;
@@ -77,12 +74,12 @@ public class Product extends BaseEntity {
 		this.productName = productName;
 	}
 
-	public Double getSalesAmount() {
-		return salesAmount;
+	public Double getUnitPrice() {
+		return unitPrice;
 	}
 
-	public void setSalesAmount(Double salesAmount) {
-		this.salesAmount = salesAmount;
+	public void setUnitPrice(Double unitPrice) {
+		this.unitPrice = unitPrice;
 	}
 
 	public Boolean getTaxable1Flag() {
@@ -107,7 +104,6 @@ public class Product extends BaseEntity {
 
 	public void setTaxable3Flag(Boolean taxable3Flag) {
 		this.taxable3Flag = taxable3Flag;
->>>>>>> a57acd2475f99969ff0c912f39a811f59d6b6c63
 	}
 
 }
