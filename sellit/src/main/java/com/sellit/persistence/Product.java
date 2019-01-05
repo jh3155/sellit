@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PRODUCT")
-public class Product {
+public class Product extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,40 +30,20 @@ public class Product {
 	@Column(name = "BARCODE")
 	private String barcode;
 
-	@Column(name = "FULL_NAME")
-	private String fullName;
-
-	@Column(name = "SHORT_NAME_ENG")
-	private String shortNameInEnglish;
-
-	@Column(name = "SHORT_NAME_OTHER")
-	private String shortNameInOtherLanguage;
-
-	@Column(name = "INVENTORY_ON_HAND")
-	private Integer inventoryOnHand;
-
-	@Column(name = "SAFETY_INVENTORY_ON_HAND")
-	private Integer safetyInventoryOnHand;
-
-	@Column(name = "COST_AMT")
-	private BigDecimal costAmount;
+	@Column(name = "PRODUCT_NAME")
+	private String productName;
 
 	@Column(name = "SALES_AMT")
-	private BigDecimal salesAmount;
+	private Double salesAmount;
 
-	@ManyToOne(cascade = CascadeType.DETACH)
-	@JoinColumn(name = "CREATED_BY", referencedColumnName = "EMPLOYEE_ID")
-	private Employee createdBy;
+	@Column(name = "TAXABLE_1_FLG")
+	private Boolean taxable1Flag;
 
-	@Column(name = "CREATED_DTM")
-	private LocalDateTime createdDatetime;
+	@Column(name = "TAXABLE_2_FLG")
+	private Boolean taxable2Flag;
 
-	@ManyToOne(cascade = CascadeType.DETACH)
-	@JoinColumn(name = "UPDATED_BY", referencedColumnName = "EMPLOYEE_ID")
-	private Employee updatedBy;
-
-	@Column(name = "UPDATED_DTM")
-	private LocalDateTime updatedDatetime;
+	@Column(name = "TAXABLE_3_FLG")
+	private Boolean taxable3Flag;
 
 	public Long getProductId() {
 		return productId;
@@ -89,92 +69,44 @@ public class Product {
 		this.barcode = barcode;
 	}
 
-	public String getFullName() {
-		return fullName;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
-	public String getShortNameInEnglish() {
-		return shortNameInEnglish;
-	}
-
-	public void setShortNameInEnglish(String shortNameInEnglish) {
-		this.shortNameInEnglish = shortNameInEnglish;
-	}
-
-	public String getShortNameInOtherLanguage() {
-		return shortNameInOtherLanguage;
-	}
-
-	public void setShortNameInOtherLanguage(String shortNameInOtherLanguage) {
-		this.shortNameInOtherLanguage = shortNameInOtherLanguage;
-	}
-
-	public Integer getInventoryOnHand() {
-		return inventoryOnHand;
-	}
-
-	public void setInventoryOnHand(Integer inventoryOnHand) {
-		this.inventoryOnHand = inventoryOnHand;
-	}
-
-	public Integer getSafetyInventoryOnHand() {
-		return safetyInventoryOnHand;
-	}
-
-	public void setSafetyInventoryOnHand(Integer safetyInventoryOnHand) {
-		this.safetyInventoryOnHand = safetyInventoryOnHand;
-	}
-
-	public BigDecimal getCostAmount() {
-		return costAmount;
-	}
-
-	public void setCostAmount(BigDecimal costAmount) {
-		this.costAmount = costAmount;
-	}
-
-	public BigDecimal getSalesAmount() {
+	public Double getSalesAmount() {
 		return salesAmount;
 	}
 
-	public void setSalesAmount(BigDecimal salesAmount) {
+	public void setSalesAmount(Double salesAmount) {
 		this.salesAmount = salesAmount;
 	}
 
-	public Employee getCreatedBy() {
-		return createdBy;
+	public Boolean getTaxable1Flag() {
+		return taxable1Flag;
 	}
 
-	public void setCreatedBy(Employee createdBy) {
-		this.createdBy = createdBy;
+	public void setTaxable1Flag(Boolean taxable1Flag) {
+		this.taxable1Flag = taxable1Flag;
 	}
 
-	public LocalDateTime getCreatedDatetime() {
-		return createdDatetime;
+	public Boolean getTaxable2Flag() {
+		return taxable2Flag;
 	}
 
-	public void setCreatedDatetime(LocalDateTime createdDatetime) {
-		this.createdDatetime = createdDatetime;
+	public void setTaxable2Flag(Boolean taxable2Flag) {
+		this.taxable2Flag = taxable2Flag;
 	}
 
-	public Employee getUpdatedBy() {
-		return updatedBy;
+	public Boolean getTaxable3Flag() {
+		return taxable3Flag;
 	}
 
-	public void setUpdatedBy(Employee updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-
-	public LocalDateTime getUpdatedDatetime() {
-		return updatedDatetime;
-	}
-
-	public void setUpdatedDatetime(LocalDateTime updatedDatetime) {
-		this.updatedDatetime = updatedDatetime;
+	public void setTaxable3Flag(Boolean taxable3Flag) {
+		this.taxable3Flag = taxable3Flag;
 	}
 
 }
