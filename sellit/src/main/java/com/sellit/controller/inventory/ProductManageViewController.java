@@ -1,12 +1,9 @@
 package com.sellit.controller.inventory;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.sellit.SellitApplication;
 import com.sellit.constants.StatusConstants;
@@ -24,7 +21,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
 
-@Component
+//@Component
 public class ProductManageViewController extends Controller {
 
 	@Autowired
@@ -103,15 +100,15 @@ public class ProductManageViewController extends Controller {
 			departmentChoiceBox.getSelectionModel().select(product.getDepartment());
 		}
 
-		barcodeField.setText(product.getBarcode());
-		productNameField.setText(product.getProductName());
-		productMenuNameField.setText(product.getProductMenuName());
-		inventoryOnHandField.setText(Objects.toString(product.getInventoryOnHand(), "0"));
-		safetyInventoryOnHandField.setText(Objects.toString(product.getSafetyInventoryOnHand(), "0"));
-		unitPriceField.setText(Objects.toString(product.getUnitPrice(), "0.00"));
-		taxable1Checkbox.setSelected(product.getTaxable1() == null ? Boolean.FALSE : product.getTaxable1());
-		taxable2Checkbox.setSelected(product.getTaxable2() == null ? Boolean.FALSE : product.getTaxable2());
-		taxable3Checkbox.setSelected(product.getTaxable3() == null ? Boolean.FALSE : product.getTaxable3());
+//		barcodeField.setText(product.getBarcode());
+//		productNameField.setText(product.getProductName());
+//		productMenuNameField.setText(product.getProductMenuName());
+//		inventoryOnHandField.setText(Objects.toString(product.getInventoryOnHand(), "0"));
+//		safetyInventoryOnHandField.setText(Objects.toString(product.getSafetyInventoryOnHand(), "0"));
+//		unitPriceField.setText(Objects.toString(product.getUnitPrice(), "0.00"));
+//		taxable1Checkbox.setSelected(product.getTaxable1() == null ? Boolean.FALSE : product.getTaxable1());
+//		taxable2Checkbox.setSelected(product.getTaxable2() == null ? Boolean.FALSE : product.getTaxable2());
+//		taxable3Checkbox.setSelected(product.getTaxable3() == null ? Boolean.FALSE : product.getTaxable3());
 	}
 
 	public void setProduct(Product product) {
@@ -129,15 +126,15 @@ public class ProductManageViewController extends Controller {
 
 		product.setDepartment(departmentChoiceBox.getSelectionModel().getSelectedItem());
 
-		product.setBarcode(barcodeField.getText());
-		product.setProductName(productNameField.getText());
-		product.setProductMenuName(productMenuNameField.getText());
-		product.setInventoryOnHand(Integer.valueOf(inventoryOnHandField.getText()));
-		product.setSafetyInventoryOnHand(Integer.valueOf(safetyInventoryOnHandField.getText()));
-		product.setUnitPrice(new BigDecimal(unitPriceField.getText()));
-		product.setTaxable1(taxable1Checkbox.isSelected());
-		product.setTaxable2(taxable2Checkbox.isSelected());
-		product.setTaxable3(taxable3Checkbox.isSelected());
+//		product.setBarcode(barcodeField.getText());
+//		product.setProductName(productNameField.getText());
+//		product.setProductMenuName(productMenuNameField.getText());
+//		product.setInventoryOnHand(Integer.valueOf(inventoryOnHandField.getText()));
+//		product.setSafetyInventoryOnHand(Integer.valueOf(safetyInventoryOnHandField.getText()));
+//		product.setUnitPrice(new BigDecimal(unitPriceField.getText()));
+//		product.setTaxable1(taxable1Checkbox.isSelected());
+//		product.setTaxable2(taxable2Checkbox.isSelected());
+//		product.setTaxable3(taxable3Checkbox.isSelected());
 
 		productService.save(product);
 

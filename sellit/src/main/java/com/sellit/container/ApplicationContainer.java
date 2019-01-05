@@ -12,6 +12,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.transform.Scale;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -49,6 +50,7 @@ public class ApplicationContainer {
 		// Show the scene containing the root layout.
 		Scene scene = new Scene(rootLayout);
 		scene.getStylesheets().add(CSS_BOOTSTRAP3_CSS);
+//		scene.getStylesheets().add("-fx-font-size: 26px");
 
 		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 		primaryStage.setX((screenBounds.getWidth() - 1920) / 2);
@@ -60,6 +62,14 @@ public class ApplicationContainer {
 		primaryStage.setScene(scene);
 
 		primaryStage.show();
+
+		double SCALE_FACTOR = 0.8;
+		Scale scale = new Scale(SCALE_FACTOR, SCALE_FACTOR);
+        scale.setPivotX(0);
+        scale.setPivotY(0);
+        rootLayout.getTransforms().setAll(scale);
+        primaryStage.setWidth(1920 * SCALE_FACTOR);
+        primaryStage.setHeight(1080 * SCALE_FACTOR);
 	}
 
 	public void showHeader() throws IOException {
