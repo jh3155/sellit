@@ -16,7 +16,7 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "PRODUCT")
-public class Product extends BaseTable {
+public class Product extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,29 +33,17 @@ public class Product extends BaseTable {
 	@Column(name = "PRODUCT_NAME")
 	private String productName;
 
-	@Column(name = "PRODUCT_MENU_NAME")
-	private String productMenuName;
+	@Column(name = "SALES_AMT")
+	private Double salesAmount;
 
-	@Column(name = "INVENTORY_ON_HAND")
-	private Integer inventoryOnHand;
+	@Column(name = "TAXABLE_1_FLG")
+	private Boolean taxable1Flag;
 
-	@Column(name = "SAFETY_INVENTORY_ON_HAND")
-	private Integer safetyInventoryOnHand;
+	@Column(name = "TAXABLE_2_FLG")
+	private Boolean taxable2Flag;
 
-	@Column(name = "UNIT_PRICE")
-	private BigDecimal unitPrice;
-
-	@Column(name = "TAXABLE1")
-	@Type(type = "yes_no")
-	private Boolean taxable1;
-
-	@Column(name = "TAXABLE2")
-	@Type(type = "yes_no")
-	private Boolean taxable2;
-
-	@Column(name = "TAXABLE3")
-	@Type(type = "yes_no")
-	private Boolean taxable3;
+	@Column(name = "TAXABLE_3_FLG")
+	private Boolean taxable3Flag;
 
 	public Long getProductId() {
 		return productId;
@@ -89,60 +77,37 @@ public class Product extends BaseTable {
 		this.productName = productName;
 	}
 
-	public String getProductMenuName() {
-		return productMenuName;
+	public Double getSalesAmount() {
+		return salesAmount;
 	}
 
-	public void setProductMenuName(String productMenuName) {
-		this.productMenuName = productMenuName;
+	public void setSalesAmount(Double salesAmount) {
+		this.salesAmount = salesAmount;
 	}
 
-	public Integer getInventoryOnHand() {
-		return inventoryOnHand;
+	public Boolean getTaxable1Flag() {
+		return taxable1Flag;
 	}
 
-	public void setInventoryOnHand(Integer inventoryOnHand) {
-		this.inventoryOnHand = inventoryOnHand;
+	public void setTaxable1Flag(Boolean taxable1Flag) {
+		this.taxable1Flag = taxable1Flag;
 	}
 
-	public Integer getSafetyInventoryOnHand() {
-		return safetyInventoryOnHand;
+	public Boolean getTaxable2Flag() {
+		return taxable2Flag;
 	}
 
-	public void setSafetyInventoryOnHand(Integer safetyInventoryOnHand) {
-		this.safetyInventoryOnHand = safetyInventoryOnHand;
+	public void setTaxable2Flag(Boolean taxable2Flag) {
+		this.taxable2Flag = taxable2Flag;
 	}
 
-	public BigDecimal getUnitPrice() {
-		return unitPrice;
+	public Boolean getTaxable3Flag() {
+		return taxable3Flag;
 	}
 
-	public void setUnitPrice(BigDecimal unitPrice) {
-		this.unitPrice = unitPrice;
-	}
-
-	public Boolean getTaxable1() {
-		return taxable1;
-	}
-
-	public void setTaxable1(Boolean taxable1) {
-		this.taxable1 = taxable1;
-	}
-
-	public Boolean getTaxable2() {
-		return taxable2;
-	}
-
-	public void setTaxable2(Boolean taxable2) {
-		this.taxable2 = taxable2;
-	}
-
-	public Boolean getTaxable3() {
-		return taxable3;
-	}
-
-	public void setTaxable3(Boolean taxable3) {
-		this.taxable3 = taxable3;
+	public void setTaxable3Flag(Boolean taxable3Flag) {
+		this.taxable3Flag = taxable3Flag;
+>>>>>>> a57acd2475f99969ff0c912f39a811f59d6b6c63
 	}
 
 }
