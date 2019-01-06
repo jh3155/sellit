@@ -37,7 +37,11 @@ public class Ticket extends BaseEntity {
 
 	@OneToMany(targetEntity = TicketData.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "TICKET_ID", referencedColumnName = "TICKET_ID")
-	private List<TicketData> ticketData = new ArrayList<>();
+	private final List<TicketData> ticketData = new ArrayList<>();
+
+	@OneToMany(targetEntity = Payment.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "TICKET_ID", referencedColumnName = "TICKET_ID")
+	private final List<Payment> payments = new ArrayList<>();
 
 	@Column(name = "TICKET_DTM")
 	private LocalDateTime ticketDateTime;
@@ -49,19 +53,19 @@ public class Ticket extends BaseEntity {
 	private Double subtotalAmount;
 
 	@Column(name = "TAX1_RATE")
-	private Double tax1Rate;
+	private final Double tax1Rate;
 
 	@Column(name = "TAX1_TOTAL_AMT")
 	private Double tax1TotalAmount;
 
 	@Column(name = "TAX2_RATE")
-	private Double tax2Rate;
+	private final Double tax2Rate;
 
 	@Column(name = "TAX2_TOTAL_AMT")
 	private Double tax2TotalAmount;
 
 	@Column(name = "TAX3_RATE")
-	private Double tax3Rate;
+	private final Double tax3Rate;
 
 	@Column(name = "TAX3_TOTAL_AMT")
 	private Double tax3TotalAmount;
@@ -69,7 +73,7 @@ public class Ticket extends BaseEntity {
 	@Column(name = "TOTAL_AMT")
 	private Double totalAmount;
 
-	public Ticket(Double tax1Rate, Double tax2Rate, Double tax3Rate) {
+	public Ticket(final Double tax1Rate, final Double tax2Rate, final Double tax3Rate) {
 		this.tax1Rate = tax1Rate;
 		this.tax2Rate = tax2Rate;
 		this.tax3Rate = tax3Rate;
@@ -79,7 +83,7 @@ public class Ticket extends BaseEntity {
 		return ticketId;
 	}
 
-	public void setTicketId(Long ticketId) {
+	public void setTicketId(final Long ticketId) {
 		this.ticketId = ticketId;
 	}
 
@@ -87,7 +91,7 @@ public class Ticket extends BaseEntity {
 		return customer;
 	}
 
-	public void setCustomer(Customer customer) {
+	public void setCustomer(final Customer customer) {
 		this.customer = customer;
 	}
 
@@ -95,15 +99,15 @@ public class Ticket extends BaseEntity {
 		return ticketData;
 	}
 
-	public void setTicketData(List<TicketData> ticketData) {
-		this.ticketData = ticketData;
+	public List<Payment> getPayments() {
+		return payments;
 	}
 
 	public LocalDateTime getTicketDateTime() {
 		return ticketDateTime;
 	}
 
-	public void setTicketDateTime(LocalDateTime ticketDateTime) {
+	public void setTicketDateTime(final LocalDateTime ticketDateTime) {
 		this.ticketDateTime = ticketDateTime;
 	}
 
@@ -111,7 +115,7 @@ public class Ticket extends BaseEntity {
 		return quantityTotal;
 	}
 
-	public void setQuantityTotal(Integer quantityTotal) {
+	public void setQuantityTotal(final Integer quantityTotal) {
 		this.quantityTotal = quantityTotal;
 	}
 
@@ -119,7 +123,7 @@ public class Ticket extends BaseEntity {
 		return subtotalAmount;
 	}
 
-	public void setSubtotalAmount(Double subtotalAmount) {
+	public void setSubtotalAmount(final Double subtotalAmount) {
 		this.subtotalAmount = subtotalAmount;
 	}
 
@@ -131,7 +135,7 @@ public class Ticket extends BaseEntity {
 		return tax1TotalAmount;
 	}
 
-	public void setTax1TotalAmount(Double tax1TotalAmount) {
+	public void setTax1TotalAmount(final Double tax1TotalAmount) {
 		this.tax1TotalAmount = tax1TotalAmount;
 	}
 
@@ -143,7 +147,7 @@ public class Ticket extends BaseEntity {
 		return tax2TotalAmount;
 	}
 
-	public void setTax2TotalAmount(Double tax2TotalAmount) {
+	public void setTax2TotalAmount(final Double tax2TotalAmount) {
 		this.tax2TotalAmount = tax2TotalAmount;
 	}
 
@@ -155,7 +159,7 @@ public class Ticket extends BaseEntity {
 		return tax3TotalAmount;
 	}
 
-	public void setTax3TotalAmount(Double tax3TotalAmount) {
+	public void setTax3TotalAmount(final Double tax3TotalAmount) {
 		this.tax3TotalAmount = tax3TotalAmount;
 	}
 
@@ -163,12 +167,12 @@ public class Ticket extends BaseEntity {
 		return totalAmount;
 	}
 
-	public void setTotalAmount(Double totalAmount) {
+	public void setTotalAmount(final Double totalAmount) {
 		this.totalAmount = totalAmount;
 	}
 
-	public TicketData createTicketData(Product product) {
-		TicketData ticketData = new TicketData(this, product);
+	public TicketData createTicketData(final Product product) {
+		final TicketData ticketData = new TicketData(this, product);
 		this.ticketData.add(ticketData);
 
 		return ticketData;
@@ -201,7 +205,7 @@ public class Ticket extends BaseEntity {
 			return;
 		}
 
-		Double subtotalAmount = ticketData.stream().filter(t -> BooleanUtils.isTrue(t.getTaxable1Flag()))
+		final Double subtotalAmount = ticketData.stream().filter(t -> BooleanUtils.isTrue(t.getTaxable1Flag()))
 				.mapToDouble(TicketData::getTotalSalesAmount).sum();
 		tax1TotalAmount = DoubleUtil.truncate(subtotalAmount * tax1Rate);
 	}
@@ -213,7 +217,7 @@ public class Ticket extends BaseEntity {
 			return;
 		}
 
-		Double subtotalAmount = ticketData.stream().filter(t -> BooleanUtils.isTrue(t.getTaxable2Flag()))
+		final Double subtotalAmount = ticketData.stream().filter(t -> BooleanUtils.isTrue(t.getTaxable2Flag()))
 				.mapToDouble(TicketData::getTotalSalesAmount).sum();
 		tax2TotalAmount = DoubleUtil.truncate(subtotalAmount * tax2Rate);
 	}
@@ -225,7 +229,7 @@ public class Ticket extends BaseEntity {
 			return;
 		}
 
-		Double subtotalAmount = ticketData.stream().filter(t -> BooleanUtils.isTrue(t.getTaxable3Flag()))
+		final Double subtotalAmount = ticketData.stream().filter(t -> BooleanUtils.isTrue(t.getTaxable3Flag()))
 				.mapToDouble(TicketData::getTotalSalesAmount).sum();
 		tax3TotalAmount = DoubleUtil.truncate(subtotalAmount * tax3Rate);
 	}

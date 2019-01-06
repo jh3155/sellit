@@ -13,59 +13,48 @@ public class Config extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CUSTOMER_ID")
+	@Column(name = "CONFIG_ID")
 	private Long customerId;
 
-	@Column(name = "CUSTOMER_NAME")
-	private String customerName;
+	@Column(name = "CONFIG_CATEGORY")
+	private String configCategory;
 
-	@Column(name = "EMAIL_ADDRESS")
-	private String emailAddress;
+	@Column(name = "CONFIG_NAME")
+	private String configName;
 
-	@Column(name = "PHONE_NUMBER")
-	private String phoneNumber;
-
-	@Column(name = "MEMO")
-	private String memo;
+	@Column(name = "CONFIG_VALUE")
+	private String configValue;
 
 	public Long getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(Long customerId) {
+	public void setCustomerId(final Long customerId) {
 		this.customerId = customerId;
 	}
 
-	public String getCustomerName() {
-		return customerName;
+	public String getConfigCategory() {
+		return configCategory;
 	}
 
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+	public void setConfigCategory(final String configCategory) {
+		this.configCategory = configCategory;
 	}
 
-	public String getEmailAddress() {
-		return emailAddress;
+	public String getConfigName() {
+		return configName;
 	}
 
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
+	public void setConfigName(final String configName) {
+		this.configName = configName;
 	}
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getConfigValue() {
+		return configValue;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
-	public String getMemo() {
-		return memo;
-	}
-
-	public void setMemo(String memo) {
-		this.memo = memo;
+	public void setConfigValue(final String configValue) {
+		this.configValue = configValue;
 	}
 
 }

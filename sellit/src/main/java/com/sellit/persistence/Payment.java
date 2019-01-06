@@ -1,7 +1,5 @@
 package com.sellit.persistence;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,5 +28,37 @@ public class Payment extends BaseEntity {
 
 	@Column(name = "PAYMENT_AMT")
 	private Double paymentAmount;
+
+	public Long getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(final Long paymentId) {
+		this.paymentId = paymentId;
+	}
+
+	public Ticket getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(final Ticket ticket) {
+		this.ticket = ticket;
+	}
+
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+
+	public void setPaymentMethod(final String paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+
+	public Double getPaymentAmount() {
+		return paymentAmount;
+	}
+
+	public void setPaymentAmount(final Double paymentAmount) {
+		this.paymentAmount = paymentAmount;
+	}
 
 }
