@@ -8,7 +8,7 @@ import com.sellit.persistence.Product;
 
 public interface ProductDao extends JpaRepository<Product, Long> {
 
-	List<Product> findByBarcode(String barcode);
+	Product findByBarcode(String barcode);
 
 	List<Product> findByProductNameContaining(String productName);
 

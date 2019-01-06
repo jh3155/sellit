@@ -11,7 +11,7 @@ public interface ProductService {
 
 	Optional<Product> findById(Long productId);
 
-	List<Product> findByBarcode(String barcode);
+	Product findByBarcode(String barcode);
 
 	List<Product> findByProductNameContaining(String productName);
 

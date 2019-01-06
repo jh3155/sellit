@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
 	private ProductDao productDao;
 
 	@Override
-	public Product save(Product product) {
+	public Product save(final Product product) {
 
 		if (product.getCreatedBy() == null) {
 			product.setCreatedBy(SellitApplication.getApplicationContainer().getLoggedInEmployee());
@@ -35,17 +35,17 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Optional<Product> findById(Long productId) {
+	public Optional<Product> findById(final Long productId) {
 		return productDao.findById(productId);
 	}
 
 	@Override
-	public List<Product> findByBarcode(String barcode) {
+	public Product findByBarcode(final String barcode) {
 		return productDao.findByBarcode(barcode);
 	}
 
 	@Override
-	public List<Product> findByProductNameContaining(String productName) {
+	public List<Product> findByProductNameContaining(final String productName) {
 		return productDao.findByProductNameContaining(productName);
 	}
 
