@@ -35,11 +35,11 @@ public class Ticket extends BaseEntity {
 	@JoinColumn(name = "CUSTOMER_ID", referencedColumnName = "CUSTOMER_ID")
 	private Customer customer;
 
-	@OneToMany(targetEntity = TicketData.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = TicketData.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "TICKET_ID", referencedColumnName = "TICKET_ID")
 	private final List<TicketData> ticketData = new ArrayList<>();
 
-	@OneToMany(targetEntity = Payment.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = Payment.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "TICKET_ID", referencedColumnName = "TICKET_ID")
 	private final List<Payment> payments = new ArrayList<>();
 

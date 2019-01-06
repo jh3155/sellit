@@ -14,7 +14,7 @@ public class Config extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CONFIG_ID")
-	private Long customerId;
+	private Long configId;
 
 	@Column(name = "CONFIG_CATEGORY")
 	private String configCategory;
@@ -25,12 +25,12 @@ public class Config extends BaseEntity {
 	@Column(name = "CONFIG_VALUE")
 	private String configValue;
 
-	public Long getCustomerId() {
-		return customerId;
+	public Long getConfigId() {
+		return configId;
 	}
 
-	public void setCustomerId(final Long customerId) {
-		this.customerId = customerId;
+	public void setConfigId(final Long configId) {
+		this.configId = configId;
 	}
 
 	public String getConfigCategory() {
