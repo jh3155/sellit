@@ -21,14 +21,15 @@ public class MenuController extends Controller {
 	private Button btnLogo;
 
 	/**
-	 * The constructor. The constructor is called before the initialize() method.
+	 * The constructor. The constructor is called before the initialize()
+	 * method.
 	 */
 	public MenuController() {
 	}
 
 	/**
-	 * Initializes the controller class. This method is automatically called after
-	 * the fxml file has been loaded.
+	 * Initializes the controller class. This method is automatically called
+	 * after the fxml file has been loaded.
 	 *
 	 * @throws IOException
 	 */
@@ -37,7 +38,7 @@ public class MenuController extends Controller {
 
 		// btnLogo.setStyle("-fx-background-image: url('../logo.png')");
 
-		Image image = new Image(getClass().getResourceAsStream("/logo.png"));
+		final Image image = new Image(getClass().getResourceAsStream("/logo.png"));
 		btnLogo.setGraphic(new ImageView(image));
 
 		// BackgroundImage backgroundImage = new BackgroundImage(
@@ -57,7 +58,15 @@ public class MenuController extends Controller {
 
 	@FXML
 	private void showSale() throws IOException {
-		// TODO:
+
+		if (SellitApplication.getApplicationContainer().getLoggedInEmployee() == null) {
+			AppUtil.showLoginWindow();
+			return;
+		}
+
+		final PaneContainer paneContainer = AppUtil.createPaneContainer("/com/sellit/controller/sale/SaleView.fxml",
+				this);
+		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer, true);
 	}
 
 	@FXML
@@ -68,7 +77,7 @@ public class MenuController extends Controller {
 			return;
 		}
 
-		PaneContainer paneContainer = AppUtil
+		final PaneContainer paneContainer = AppUtil
 				.createPaneContainer("/com/sellit/controller/inventory/InventoryMainView.fxml", this);
 		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer, true);
 	}
@@ -81,7 +90,7 @@ public class MenuController extends Controller {
 			return;
 		}
 
-		PaneContainer paneContainer = AppUtil
+		final PaneContainer paneContainer = AppUtil
 				.createPaneContainer("/com/sellit/controller/employee/EmployeeListView.fxml", this);
 		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer, true);
 	}
@@ -103,7 +112,7 @@ public class MenuController extends Controller {
 
 	@FXML
 	private void showDashboard() throws IOException {
-		PaneContainer paneContainer = AppUtil.createPaneContainer("/com/sellit/controller/Dashboard.fxml", this);
+		final PaneContainer paneContainer = AppUtil.createPaneContainer("/com/sellit/controller/Dashboard.fxml", this);
 		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer, true);
 	}
 

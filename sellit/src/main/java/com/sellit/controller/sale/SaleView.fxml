@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="900.0" prefWidth="1700.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../../../../resources/css/bootstrap3.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sellit.controller.sale.SaleViewController">
+   <children>
+      <TextField fx:id="barcodeField" layoutX="188.0" layoutY="169.0" onAction="#searchProduct" />
+   </children>
+</AnchorPane>

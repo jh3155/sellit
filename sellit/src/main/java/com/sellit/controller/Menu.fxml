@@ -21,7 +21,7 @@
                </styleClass>
             </Button>
             <Separator prefWidth="200.0" />
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0" text="Sale">
+            <Button mnemonicParsing="false" onAction="#showSale" prefHeight="50.0" prefWidth="220.0" text="Sale">
                <styleClass>
                   <String fx:value="primary" />
                   <String fx:value="flat-button" />
