@@ -188,7 +188,7 @@ public class Ticket extends BaseEntity {
 		calculateTax2();
 		calculateTax3();
 
-		totalAmount = subtotalAmount + tax1TotalAmount + tax2TotalAmount + tax3TotalAmount;
+		totalAmount = DoubleUtil.truncate(subtotalAmount + tax1TotalAmount + tax2TotalAmount + tax3TotalAmount);
 
 	}
 
