@@ -37,7 +37,7 @@ public class Ticket extends BaseEntity {
 
 	@OneToMany(targetEntity = TicketData.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "TICKET_ID", referencedColumnName = "TICKET_ID")
-	private final List<TicketData> ticketData = new ArrayList<>();
+	private final List<TicketData> ticketDataList = new ArrayList<>();
 
 	@OneToMany(targetEntity = Payment.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "TICKET_ID", referencedColumnName = "TICKET_ID")
@@ -95,8 +95,8 @@ public class Ticket extends BaseEntity {
 		this.customer = customer;
 	}
 
-	public List<TicketData> getTicketData() {
-		return ticketData;
+	public List<TicketData> getTicketDataList() {
+		return ticketDataList;
 	}
 
 	public List<Payment> getPayments() {
@@ -173,7 +173,9 @@ public class Ticket extends BaseEntity {
 
 	public TicketData createTicketData(final Product product) {
 		final TicketData ticketData = new TicketData(this, product);
-		this.ticketData.add(ticketData);
+		this.ticketDataList.add(ticketData);
+
+		calculateTotal();
 
 		return ticketData;
 	}
@@ -191,11 +193,11 @@ public class Ticket extends BaseEntity {
 	}
 
 	private void calculateQuantity() {
-		quantityTotal = ticketData.stream().mapToInt(TicketData::getQuantity).sum();
+		quantityTotal = ticketDataList.stream().mapToInt(TicketData::getQuantity).sum();
 	}
 
 	private void calculateSubtotal() {
-		subtotalAmount = ticketData.stream().mapToDouble(TicketData::getTotalSalesAmount).sum();
+		subtotalAmount = ticketDataList.stream().mapToDouble(TicketData::getTotalSalesAmount).sum();
 	}
 
 	private void calculateTax1() {
@@ -205,7 +207,7 @@ public class Ticket extends BaseEntity {
 			return;
 		}
 
-		final Double subtotalAmount = ticketData.stream().filter(t -> BooleanUtils.isTrue(t.getTaxable1Flag()))
+		final Double subtotalAmount = ticketDataList.stream().filter(t -> BooleanUtils.isTrue(t.getTaxable1Flag()))
 				.mapToDouble(TicketData::getTotalSalesAmount).sum();
 		tax1TotalAmount = DoubleUtil.truncate(subtotalAmount * tax1Rate);
 	}
@@ -217,7 +219,7 @@ public class Ticket extends BaseEntity {
 			return;
 		}
 
-		final Double subtotalAmount = ticketData.stream().filter(t -> BooleanUtils.isTrue(t.getTaxable2Flag()))
+		final Double subtotalAmount = ticketDataList.stream().filter(t -> BooleanUtils.isTrue(t.getTaxable2Flag()))
 				.mapToDouble(TicketData::getTotalSalesAmount).sum();
 		tax2TotalAmount = DoubleUtil.truncate(subtotalAmount * tax2Rate);
 	}
@@ -229,7 +231,7 @@ public class Ticket extends BaseEntity {
 			return;
 		}
 
-		final Double subtotalAmount = ticketData.stream().filter(t -> BooleanUtils.isTrue(t.getTaxable3Flag()))
+		final Double subtotalAmount = ticketDataList.stream().filter(t -> BooleanUtils.isTrue(t.getTaxable3Flag()))
 				.mapToDouble(TicketData::getTotalSalesAmount).sum();
 		tax3TotalAmount = DoubleUtil.truncate(subtotalAmount * tax3Rate);
 	}
