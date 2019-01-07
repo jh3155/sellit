@@ -55,14 +55,15 @@ public class ProductListViewController extends Controller {
 	private TextField searchField;
 
 	/**
-	 * The constructor. The constructor is called before the initialize() method.
+	 * The constructor. The constructor is called before the initialize()
+	 * method.
 	 */
 	public ProductListViewController() {
 	}
 
 	/**
-	 * Initializes the controller class. This method is automatically called after
-	 * the fxml file has been loaded.
+	 * Initializes the controller class. This method is automatically called
+	 * after the fxml file has been loaded.
 	 */
 	@FXML
 	private void initialize() {
@@ -70,17 +71,23 @@ public class ProductListViewController extends Controller {
 		searchCombo.getItems().addAll(InventoryConstants.SEARCH_METHOD);
 		searchCombo.getSelectionModel().select(InventoryConstants.PRODUCT_NAME);
 
-//		productIdColumn
-//				.setCellValueFactory(cellData -> new SimpleLongProperty(cellData.getValue().getProductId()).asObject());
-//		departmentColumn.setCellValueFactory(
-//				cellData -> new SimpleStringProperty(cellData.getValue().getDepartment().getDepartmentName()));
-//		barcodeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getBarcode()));
-//		productNameColumn
-//				.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProductName()));
-//		onHandColumn.setCellValueFactory(
-//				cellData -> new SimpleIntegerProperty(cellData.getValue().getInventoryOnHand()).asObject());
-//		unitPriceColumn.setCellValueFactory(
-//				cellData -> new SimpleObjectProperty<BigDecimal>(cellData.getValue().getUnitPrice()));
+		// productIdColumn
+		// .setCellValueFactory(cellData -> new
+		// SimpleLongProperty(cellData.getValue().getProductId()).asObject());
+		// departmentColumn.setCellValueFactory(
+		// cellData -> new
+		// SimpleStringProperty(cellData.getValue().getDepartment().getDepartmentName()));
+		// barcodeColumn.setCellValueFactory(cellData -> new
+		// SimpleStringProperty(cellData.getValue().getBarcode()));
+		// productNameColumn
+		// .setCellValueFactory(cellData -> new
+		// SimpleStringProperty(cellData.getValue().getProductName()));
+		// onHandColumn.setCellValueFactory(
+		// cellData -> new
+		// SimpleIntegerProperty(cellData.getValue().getInventoryOnHand()).asObject());
+		// unitPriceColumn.setCellValueFactory(
+		// cellData -> new
+		// SimpleObjectProperty<BigDecimal>(cellData.getValue().getUnitPrice()));
 
 		productTable.setItems(null);
 	}
@@ -88,7 +95,7 @@ public class ProductListViewController extends Controller {
 	@FXML
 	private void search() {
 
-		String method = searchCombo.getSelectionModel().getSelectedItem();
+		final String method = searchCombo.getSelectionModel().getSelectedItem();
 
 		if (InventoryConstants.BARCODE.equals(method)) {
 			searchBarcode();
@@ -101,7 +108,7 @@ public class ProductListViewController extends Controller {
 	@FXML
 	private void searchProductName() {
 
-		List<Product> products = productService.findByProductNameContaining(searchField.getText());
+		final List<Product> products = productService.findByProductNameContaining(searchField.getText());
 		productTable.setItems(FXCollections.observableArrayList(products));
 
 		searchField.requestFocus();
@@ -110,17 +117,18 @@ public class ProductListViewController extends Controller {
 	@FXML
 	private void searchBarcode() {
 
-		List<Product> products = productService.findByBarcode(searchField.getText());
-		productTable.setItems(FXCollections.observableArrayList(products));
+		// List<Product> products =
+		// productService.findByBarcode(searchField.getText());
+		// productTable.setItems(FXCollections.observableArrayList(products));
 
 		searchField.requestFocus();
 	}
 
 	@FXML
 	private void addNewProduct() throws IOException {
-		Product product = new Product();
+		final Product product = new Product();
 
-		PaneContainer paneContainer = AppUtil
+		final PaneContainer paneContainer = AppUtil
 				.createPaneContainer("/com/sellit/controller/inventory/ProductManageView.fxml", this);
 		((ProductManageViewController) paneContainer.getController()).setProduct(product);
 		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer);
@@ -128,14 +136,14 @@ public class ProductListViewController extends Controller {
 
 	@FXML
 	private void modifyProduct() throws IOException {
-		Product product = productTable.getSelectionModel().getSelectedItem();
+		final Product product = productTable.getSelectionModel().getSelectedItem();
 
 		if (product == null) {
 			AppUtil.showPopupWindow("Select a product to modify", "");
 			return;
 		}
 
-		PaneContainer paneContainer = AppUtil
+		final PaneContainer paneContainer = AppUtil
 				.createPaneContainer("/com/sellit/controller/inventory/ProductManageView.fxml", this);
 		((ProductManageViewController) paneContainer.getController()).setProduct(product);
 		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer);
