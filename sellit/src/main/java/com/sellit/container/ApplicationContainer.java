@@ -22,8 +22,8 @@ public class ApplicationContainer {
 
 	public static final String CSS_BOOTSTRAP3_CSS = "/css/bootstrap3.css";
 
-	public static final int DEFAULT_SCREEN_WIDTH = 1920;
-	public static final int DEFAULT_SCREEN_HEIGHT = 1080;
+	public static final int DEFAULT_SCREEN_WIDTH = 1366;
+	public static final int DEFAULT_SCREEN_HEIGHT = 768;
 
 	private Stage primaryStage;
 	private BorderPane rootLayout;
