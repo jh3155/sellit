@@ -3,10 +3,13 @@ package com.sellit.enums;
 public enum ConfigEnum {
 
 	//@formatter:off
-	
+
 	TAX1_RATE("TAX", "TAX1_RATE"),
 	TAX2_RATE("TAX", "TAX2_RATE"),
-	TAX3_RATE("TAX", "TAX3_RATE")
+	TAX3_RATE("TAX", "TAX3_RATE"),
+
+	SCREEN_WIDTH("APPLICATION", "SCREEN_WIDTH"),
+	SCREEN_HEIGHT("APPLICATION", "SCREEN_HEIGHT")
 
 	//@formatter:on
 	;
