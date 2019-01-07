@@ -2,6 +2,8 @@ package com.sellit.util;
 
 import java.io.IOException;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.sellit.SellitApplication;
 import com.sellit.container.ApplicationContainer;
 import com.sellit.container.PaneContainer;
@@ -20,18 +22,19 @@ import javafx.stage.StageStyle;
 
 public class AppUtil {
 
-	public static FXMLLoader createFxmlLoader(String fxmlPath) {
-		FXMLLoader fxmlLoader = new FXMLLoader();
+	public static FXMLLoader createFxmlLoader(final String fxmlPath) {
+		final FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setLocation(SellitApplication.class.getResource(fxmlPath));
 		fxmlLoader.setControllerFactory(SellitApplication.getSpringContext()::getBean);
 		return fxmlLoader;
 	}
 
-	public static PaneContainer createPaneContainer(String fxmlPath, Controller parentController) throws IOException {
-		FXMLLoader fxmlLoader = AppUtil.createFxmlLoader(fxmlPath);
-		Pane pane = fxmlLoader.load();
+	public static PaneContainer createPaneContainer(final String fxmlPath, final Controller parentController)
+			throws IOException {
+		final FXMLLoader fxmlLoader = AppUtil.createFxmlLoader(fxmlPath);
+		final Pane pane = fxmlLoader.load();
 
-		PaneContainer paneContainer = new PaneContainer();
+		final PaneContainer paneContainer = new PaneContainer();
 		paneContainer.setPane(pane);
 		paneContainer.setController(fxmlLoader.getController());
 		paneContainer.setParentController(parentController);
@@ -39,31 +42,31 @@ public class AppUtil {
 		return paneContainer;
 	}
 
-	public static void showPopupWindow(String title) {
+	public static void showPopupWindow(final String title) {
 		showPopupWindow(title, "");
 	}
 
-	public static void showPopupWindow(String title, String message) {
+	public static void showPopupWindow(final String title, final String message) {
 		showPopupWindow(SellitApplication.getApplicationContainer().getPrimaryStage(), title, message);
 	}
 
-	public static void showPopupWindow(Stage ownerStage, String title, String message) {
+	public static void showPopupWindow(final Stage ownerStage, final String title, final String message) {
 		try {
-			FXMLLoader fxmlLoader = createFxmlLoader("/com/sellit/controller/PopupWindow.fxml");
-			Pane pane = fxmlLoader.load();
-			PopupWindowController controller = fxmlLoader.getController();
+			final FXMLLoader fxmlLoader = createFxmlLoader("/com/sellit/controller/PopupWindow.fxml");
+			final Pane pane = fxmlLoader.load();
+			final PopupWindowController controller = fxmlLoader.getController();
 			controller.setText(title, message);
 
 			// TODO: need to show in center
-			Stage dialogStage = new Stage();
+			final Stage dialogStage = new Stage();
 			dialogStage.initOwner(ownerStage);
-			dialogStage.setTitle("");
+			dialogStage.setTitle(StringUtils.EMPTY);
 			dialogStage.initModality(Modality.WINDOW_MODAL);
-			Scene scene = new Scene(pane);
+			final Scene scene = new Scene(pane);
 			scene.getStylesheets().add(ApplicationContainer.CSS_BOOTSTRAP3_CSS);
 			dialogStage.setScene(scene);
 
-			Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+			final Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 			dialogStage.setX((screenBounds.getWidth() - 1920) / 2);
 			dialogStage.setY((screenBounds.getHeight() - 300) / 2);
 
@@ -71,7 +74,7 @@ public class AppUtil {
 
 			controller.setDialogStage(dialogStage);
 			dialogStage.showAndWait();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -82,19 +85,19 @@ public class AppUtil {
 			SellitApplication.getApplicationContainer().clearCenterPaneStack();
 			SellitApplication.getApplicationContainer().setLoggedInEmployee(null);
 
-			FXMLLoader fxmlLoader = createFxmlLoader("/com/sellit/controller/LoginView.fxml");
-			Pane pane = fxmlLoader.load();
-			LoginController controller = fxmlLoader.getController();
+			final FXMLLoader fxmlLoader = createFxmlLoader("/com/sellit/controller/LoginView.fxml");
+			final Pane pane = fxmlLoader.load();
+			final LoginController controller = fxmlLoader.getController();
 
-			Stage dialogStage = new Stage();
+			final Stage dialogStage = new Stage();
 			dialogStage.initOwner(SellitApplication.getApplicationContainer().getPrimaryStage());
 			dialogStage.setTitle("");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
-			Scene scene = new Scene(pane);
+			final Scene scene = new Scene(pane);
 			scene.getStylesheets().add(ApplicationContainer.CSS_BOOTSTRAP3_CSS);
 			dialogStage.setScene(scene);
 
-			Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+			final Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 			dialogStage.setX((screenBounds.getWidth() - 1920) / 2);
 			dialogStage.setY((screenBounds.getHeight() - 800) / 2);
 
@@ -102,7 +105,7 @@ public class AppUtil {
 
 			controller.setDialogStage(dialogStage);
 			dialogStage.showAndWait();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 		}
 
