@@ -936,3 +936,24 @@ VBox > .split-menu-button.last > .arrow-button {
 	-fx-border-width: 0; 
 	-fx-border-color: none;
 }
+
+
+/*
+.table-row-cell {
+	-fx-cell-size: 60px;
+}
+*/
+
+.sellit-ticket-table {
+    //-fx-font-family: verdana ;
+    -fx-font-size: 18pt ;
+    //-fx-text-fill: red ;
+}
+
+.sellit-text-align-center {
+    -fx-alignment: CENTER;
+}
+
+.sellit-text-align-center-right {
+    -fx-alignment: CENTER-RIGHT;
+}
