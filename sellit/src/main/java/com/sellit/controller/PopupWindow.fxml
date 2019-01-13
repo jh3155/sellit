@@ -5,13 +5,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="1920.0" style="-fx-background-color: #0099CC;" stylesheets="@../../../../resources/css/bootstrap3.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sellit.controller.PopupWindowController">
+<AnchorPane prefHeight="500.0" prefWidth="1920.0" style="-fx-background-color: #0099CC;" stylesheets="@../../../../resources/css/bootstrap3.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sellit.controller.PopupWindowController">
    <children>
-      <Button layoutX="850.0" layoutY="226.0" mnemonicParsing="false" onAction="#close" prefHeight="50.0" prefWidth="220.0" text="OK" />
-      <Label fx:id="titleLabel" layoutX="493.0" layoutY="45.0" text="Title" textFill="WHITE">
+      <Label fx:id="titleLabel" layoutX="277.0" layoutY="85.0" text="Title" textFill="WHITE">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="24.0" />
          </font></Label>
-      <Label fx:id="messageLabel" layoutX="498.0" layoutY="119.0" text="Message" textFill="WHITE" />
+      <Label fx:id="messageLabel" layoutX="277.0" layoutY="156.0" text="Message" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Button layoutX="860.0" layoutY="342.0" mnemonicParsing="false" onAction="#close" prefHeight="100.0" prefWidth="200.0" text="OK" />
    </children>
 </AnchorPane>

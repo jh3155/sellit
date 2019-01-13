@@ -938,11 +938,17 @@ VBox > .split-menu-button.last > .arrow-button {
 }
 
 
-/*
+/* to change default row height for TableView
 .table-row-cell {
 	-fx-cell-size: 60px;
 }
 */
+
+.table-view {
+  -fx-table-cell-border-color: transparent;
+  -fx-background-insets: 0;
+  -fx-padding: 0;
+}
 
 .sellit-ticket-table {
     //-fx-font-family: verdana ;

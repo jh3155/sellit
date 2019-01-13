@@ -68,7 +68,7 @@ public class AppUtil {
 
 			final Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 			dialogStage.setX((screenBounds.getWidth() - 1920) / 2);
-			dialogStage.setY((screenBounds.getHeight() - 300) / 2);
+			dialogStage.setY((screenBounds.getHeight() - 500) / 2);
 
 			dialogStage.initStyle(StageStyle.UNDECORATED);
 

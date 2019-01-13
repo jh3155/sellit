@@ -21,15 +21,14 @@ public class MenuController extends Controller {
 	private Button btnLogo;
 
 	/**
-	 * The constructor. The constructor is called before the initialize()
-	 * method.
+	 * The constructor. The constructor is called before the initialize() method.
 	 */
 	public MenuController() {
 	}
 
 	/**
-	 * Initializes the controller class. This method is automatically called
-	 * after the fxml file has been loaded.
+	 * Initializes the controller class. This method is automatically called after
+	 * the fxml file has been loaded.
 	 *
 	 * @throws IOException
 	 */
@@ -64,9 +63,9 @@ public class MenuController extends Controller {
 			return;
 		}
 
-		final PaneContainer paneContainer = AppUtil.createPaneContainer("/com/sellit/controller/sale/SaleView.fxml",
+		final PaneContainer paneContainer = AppUtil.createPaneContainer("/com/sellit/controller/sale/RetailSale.fxml",
 				this);
-		SellitApplication.getApplicationContainer().pushCenterPaneStack(paneContainer, true);
+		SellitApplication.getApplicationContainer().fullScreenPane(paneContainer);
 	}
 
 	@FXML

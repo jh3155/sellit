@@ -70,6 +70,9 @@ public class Ticket extends BaseEntity {
 	@Column(name = "TAX3_TOTAL_AMT")
 	private Double tax3TotalAmount;
 
+	@Column(name = "TAX_TOTAL_AMT")
+	private Double taxTotalAmount;
+
 	@Column(name = "TOTAL_AMT")
 	private Double totalAmount;
 
@@ -163,6 +166,14 @@ public class Ticket extends BaseEntity {
 		this.tax3TotalAmount = tax3TotalAmount;
 	}
 
+	public Double getTaxTotalAmount() {
+		return taxTotalAmount;
+	}
+
+	public void setTaxTotalAmount(Double taxTotalAmount) {
+		this.taxTotalAmount = taxTotalAmount;
+	}
+
 	public Double getTotalAmount() {
 		return totalAmount;
 	}
@@ -184,11 +195,9 @@ public class Ticket extends BaseEntity {
 
 		calculateQuantity();
 		calculateSubtotal();
-		calculateTax1();
-		calculateTax2();
-		calculateTax3();
+		calculateTax();
 
-		totalAmount = DoubleUtil.truncate(subtotalAmount + tax1TotalAmount + tax2TotalAmount + tax3TotalAmount);
+		totalAmount = DoubleUtil.truncate(subtotalAmount + taxTotalAmount);
 
 	}
 
@@ -198,6 +207,14 @@ public class Ticket extends BaseEntity {
 
 	private void calculateSubtotal() {
 		subtotalAmount = ticketDataList.stream().mapToDouble(TicketData::getTotalSalesAmount).sum();
+	}
+
+	private void calculateTax() {
+		calculateTax1();
+		calculateTax2();
+		calculateTax3();
+
+		taxTotalAmount = DoubleUtil.truncate(tax1TotalAmount + tax2TotalAmount + tax3TotalAmount);
 	}
 
 	private void calculateTax1() {

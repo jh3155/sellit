@@ -13,9 +13,12 @@ import com.sellit.persistence.Employee;
 import com.sellit.service.ConfigService;
 import com.sellit.util.AppUtil;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.transform.Scale;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -24,14 +27,14 @@ public class ApplicationContainer implements InitializingBean {
 
 	public static final String CSS_BOOTSTRAP3_CSS = "/css/bootstrap3.css";
 
-	public static final int DEFAULT_SCREEN_WIDTH = 1366;
-	public static final int DEFAULT_SCREEN_HEIGHT = 768;
+	public static final int DEFAULT_SCREEN_WIDTH = 1920;
+	public static final int DEFAULT_SCREEN_HEIGHT = 1080;
 
 	@Autowired
 	private ConfigService configService;
 
-	private int defaultScreenWidth;
-	private int defaultScreenHeight;
+	private int screenWidth;
+	private int screenHeight;
 
 	private Stage primaryStage;
 	private BorderPane rootLayout;
@@ -72,17 +75,23 @@ public class ApplicationContainer implements InitializingBean {
 
 		primaryStage.show();
 
+		// scaling
+		final double widthScaleFactor = screenWidth / DEFAULT_SCREEN_WIDTH;
+		final double heightScaleFactor = screenHeight / DEFAULT_SCREEN_HEIGHT;
+		final Scale scale = new Scale(widthScaleFactor, heightScaleFactor);
+		scale.setPivotX(0);
+		scale.setPivotY(0);
+		rootLayout.getTransforms().setAll(scale);
+		primaryStage.setWidth(screenWidth);
+		primaryStage.setHeight(screenHeight);
+
+		// center screen
 		// use VisualBounds to show taskbar
-//		final Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-//
-//		final double widthScaleFactor = screenBounds.getWidth() / defaultScreenWidth;
-//		final double heightScaleFactor = screenBounds.getHeight() / defaultScreenHeight;
-//		final Scale scale = new Scale(widthScaleFactor, heightScaleFactor);
-//		scale.setPivotX(0);
-//		scale.setPivotY(0);
-//		rootLayout.getTransforms().setAll(scale);
-//		primaryStage.setWidth(screenBounds.getWidth());
-//		primaryStage.setHeight(screenBounds.getHeight());
+		final Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+		primaryStage.setX((screenBounds.getWidth() - screenWidth) / 2);
+		primaryStage.setY((screenBounds.getHeight() - screenHeight) / 2);
+
+		clearCenterPaneStack();
 	}
 
 	public void showHeader() throws IOException {
@@ -100,10 +109,10 @@ public class ApplicationContainer implements InitializingBean {
 		rootLayout.setBottom(paneContainer.getPane());
 	}
 
-	public void pushTest(final PaneContainer paneContainer) {
-		final Pane pane = centerPanes.push(paneContainer).getPane();
+	public void fullScreenPane(final PaneContainer paneContainer) {
+		final Pane pane = paneContainer.getPane();
 		rootLayout.setCenter(pane);
-		rootLayout.getLeft().setVisible(false);
+		rootLayout.setLeft(null);
 	}
 
 	public void pushCenterPaneStack(final PaneContainer paneContainer) {
@@ -172,18 +181,18 @@ public class ApplicationContainer implements InitializingBean {
 				ConfigEnum.SCREEN_WIDTH.getCategory(), ConfigEnum.SCREEN_WIDTH.getValue());
 
 		if (StringUtils.isNotEmpty(screenWidthConfig)) {
-			defaultScreenWidth = Integer.parseInt(screenWidthConfig);
+			screenWidth = Integer.parseInt(screenWidthConfig);
 		} else {
-			defaultScreenWidth = DEFAULT_SCREEN_WIDTH;
+			screenWidth = DEFAULT_SCREEN_WIDTH;
 		}
 
 		final String screenHeightConfig = configService.findByConfigCategoryAndConfigName(
 				ConfigEnum.SCREEN_HEIGHT.getCategory(), ConfigEnum.SCREEN_HEIGHT.getValue());
 
 		if (StringUtils.isNotEmpty(screenHeightConfig)) {
-			defaultScreenHeight = Integer.parseInt(screenHeightConfig);
+			screenHeight = Integer.parseInt(screenHeightConfig);
 		} else {
-			defaultScreenHeight = DEFAULT_SCREEN_HEIGHT;
+			screenHeight = DEFAULT_SCREEN_HEIGHT;
 		}
 
 	}
