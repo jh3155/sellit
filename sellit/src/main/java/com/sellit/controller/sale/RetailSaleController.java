@@ -12,6 +12,7 @@ import com.sellit.enums.ConfigEnum;
 import com.sellit.persistence.Product;
 import com.sellit.persistence.Ticket;
 import com.sellit.service.ConfigService;
+import com.sellit.service.TicketService;
 import com.sellit.util.AppUtil;
 
 import javafx.fxml.FXML;
@@ -22,6 +23,9 @@ public class RetailSaleController extends Controller implements InitializingBean
 
 	@Autowired
 	private ConfigService configService;
+
+	@Autowired
+	private TicketService ticketService;
 
 	@FXML
 	private BorderPane borderPane;
@@ -50,14 +54,15 @@ public class RetailSaleController extends Controller implements InitializingBean
 	 */
 	@FXML
 	private void initialize() throws IOException {
+		startNewTransaction();
+	}
 
+	private void showTicketListView() throws IOException {
 		PaneContainer paneContainer = AppUtil.createPaneContainer("/com/sellit/controller/sale/TicketList.fxml", this);
 		ticketListViewController = (TicketListController) paneContainer.getController();
 		ticketListViewController.setTicket(currentTransaction);
 
 		borderPane.setLeft(paneContainer.getPane());
-
-		showManageView();
 	}
 
 	private void showManageView() throws IOException {
@@ -78,6 +83,19 @@ public class RetailSaleController extends Controller implements InitializingBean
 		currentTransaction.createTicketData(product);
 
 		ticketListViewController.refresh();
+	}
+
+	public void startNewTransaction() throws IOException {
+		currentTransaction = new Ticket(tax1Rate, tax2Rate, tax3Rate);
+
+		showTicketListView();
+		showManageView();
+	}
+
+	public void closeTransaction() throws IOException {
+		ticketService.save(currentTransaction);
+
+		startNewTransaction();
 	}
 
 	@Override
@@ -106,9 +124,6 @@ public class RetailSaleController extends Controller implements InitializingBean
 		if (tax3RateConfig != null) {
 			tax3Rate = Double.valueOf(tax3RateConfig);
 		}
-
-		currentTransaction = new Ticket(tax1Rate, tax2Rate, tax3Rate);
-
 	}
 
 }

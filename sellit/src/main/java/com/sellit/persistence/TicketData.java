@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.Validate;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "TICKET_DATA")
@@ -39,12 +40,15 @@ public class TicketData extends BaseEntity {
 	@Column(name = "TOTAL_SALES_AMT")
 	private Double totalSalesAmount;
 
+	@Type(type="yes_no")
 	@Column(name = "TAXABLE_1_FLG")
 	private Boolean taxable1Flag;
 
+	@Type(type="yes_no")
 	@Column(name = "TAXABLE_2_FLG")
 	private Boolean taxable2Flag;
 
+	@Type(type="yes_no")
 	@Column(name = "TAXABLE_3_FLG")
 	private Boolean taxable3Flag;
 

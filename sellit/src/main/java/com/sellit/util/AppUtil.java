@@ -66,6 +66,7 @@ public class AppUtil {
 			scene.getStylesheets().add(ApplicationContainer.CSS_BOOTSTRAP3_CSS);
 			dialogStage.setScene(scene);
 
+			// TODO this should come from config
 			final Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 			dialogStage.setX((screenBounds.getWidth() - 1920) / 2);
 			dialogStage.setY((screenBounds.getHeight() - 500) / 2);
@@ -108,6 +109,29 @@ public class AppUtil {
 		} catch (final IOException e) {
 			e.printStackTrace();
 		}
+
+	}
+
+	public static void showDialogWindow(PaneContainer paneContainer) {
+		Pane pane = paneContainer.getPane();
+		Controller controller = paneContainer.getController();
+
+		final Stage dialogStage = new Stage();
+		dialogStage.initOwner(SellitApplication.getApplicationContainer().getPrimaryStage());
+		dialogStage.setTitle("");
+		dialogStage.initModality(Modality.WINDOW_MODAL);
+		final Scene scene = new Scene(pane);
+		scene.getStylesheets().add(ApplicationContainer.CSS_BOOTSTRAP3_CSS);
+		dialogStage.setScene(scene);
+
+		final Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+		dialogStage.setX((screenBounds.getWidth() - 1920) / 2);
+		dialogStage.setY((screenBounds.getHeight() - 1080) / 2);
+
+		dialogStage.initStyle(StageStyle.UNDECORATED);
+
+		controller.setDialogStage(dialogStage);
+		dialogStage.showAndWait();
 
 	}
 

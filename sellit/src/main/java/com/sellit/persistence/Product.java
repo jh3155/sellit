@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "PRODUCT")
 public class Product extends BaseEntity {
@@ -33,13 +35,16 @@ public class Product extends BaseEntity {
 	@Column(name = "UNIT_PRICE")
 	private Double unitPrice;
 
+	@Type(type = "yes_no")
 	@Column(name = "TAXABLE_1_FLG")
 	private Boolean taxable1Flag;
 
+	@Type(type = "yes_no")
 	@Column(name = "TAXABLE_2_FLG")
 	private Boolean taxable2Flag;
 
 	@Column(name = "TAXABLE_3_FLG")
+	@Type(type = "yes_no")
 	private Boolean taxable3Flag;
 
 	public Long getProductId() {

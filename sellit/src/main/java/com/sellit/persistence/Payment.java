@@ -29,6 +29,15 @@ public class Payment extends BaseEntity {
 	@Column(name = "PAYMENT_AMT")
 	private Double paymentAmount;
 
+	@Column(name = "REMAINING_BALANCE_DUE_AMT")
+	private Double remainingBalanceDueAmount;
+
+	@Column(name = "TENDER_AMT")
+	private Double tenderAmount;
+
+	@Column(name = "CHANGE_AMT")
+	private Double changeAmount;
+
 	public Long getPaymentId() {
 		return paymentId;
 	}
@@ -59,6 +68,30 @@ public class Payment extends BaseEntity {
 
 	public void setPaymentAmount(final Double paymentAmount) {
 		this.paymentAmount = paymentAmount;
+	}
+
+	public Double getRemainingBalanceDueAmount() {
+		return remainingBalanceDueAmount;
+	}
+
+	public void setRemainingBalanceDueAmount(Double remainingBalanceDueAmount) {
+		this.remainingBalanceDueAmount = remainingBalanceDueAmount;
+	}
+
+	public Double getTenderAmount() {
+		return tenderAmount;
+	}
+
+	public void setTenderAmount(Double tenderAmount) {
+		this.tenderAmount = tenderAmount;
+	}
+
+	public Double getChangeAmount() {
+		return changeAmount;
+	}
+
+	public void setChangeAmount(Double changeAmount) {
+		this.changeAmount = changeAmount;
 	}
 
 }

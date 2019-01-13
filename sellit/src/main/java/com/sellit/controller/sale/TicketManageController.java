@@ -1,9 +1,12 @@
 package com.sellit.controller.sale;
 
+import java.io.IOException;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sellit.container.PaneContainer;
 import com.sellit.controller.Controller;
 import com.sellit.persistence.Product;
 import com.sellit.persistence.Ticket;
@@ -44,18 +47,36 @@ public class TicketManageController extends Controller {
 
 	@FXML
 	private void searchProduct() {
-		final Product product = productService.findByBarcode(barcodeField.getText());
+		String barcode = barcodeField.getText();
+		final Product product = productService.findByBarcode(barcode);
 
 		barcodeField.setText(StringUtils.EMPTY);
 
 		if (product == null) {
-			AppUtil.showPopupWindow("Product not found!");
+			AppUtil.showPopupWindow(String.format("Product not found with barcode=[%s]", barcode));
 			return;
 		}
 
 		parent.addProduct(product);
 
 		barcodeField.requestFocus();
+	}
+
+	@FXML
+	private void makePayment() throws IOException {
+
+		if (ticket.getTotalAmount() <= 0) {
+			AppUtil.showPopupWindow(String.format("Ticket total is $0.00."));
+			return;
+		}
+
+		PaneContainer paneContainer = AppUtil.createPaneContainer("/com/sellit/controller/sale/Payment.fxml", this);
+		PaymentController paymentController = (PaymentController) paneContainer.getController();
+		paymentController.setParent(parent);
+		paymentController.setTicket(ticket);
+		paymentController.refresh();
+
+		AppUtil.showDialogWindow(paneContainer);
 	}
 
 	@Override

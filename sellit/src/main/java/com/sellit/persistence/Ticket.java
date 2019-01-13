@@ -80,6 +80,8 @@ public class Ticket extends BaseEntity {
 		this.tax1Rate = tax1Rate;
 		this.tax2Rate = tax2Rate;
 		this.tax3Rate = tax3Rate;
+
+		calculateTotal();
 	}
 
 	public Long getTicketId() {
@@ -251,6 +253,12 @@ public class Ticket extends BaseEntity {
 		final Double subtotalAmount = ticketDataList.stream().filter(t -> BooleanUtils.isTrue(t.getTaxable3Flag()))
 				.mapToDouble(TicketData::getTotalSalesAmount).sum();
 		tax3TotalAmount = DoubleUtil.truncate(subtotalAmount * tax3Rate);
+	}
+
+	public Double calcRemainingBalanceDue() {
+		Double paymentTotal = payments.stream().mapToDouble(Payment::getPaymentAmount).sum();
+
+		return DoubleUtil.truncate(totalAmount - paymentTotal);
 	}
 
 }
